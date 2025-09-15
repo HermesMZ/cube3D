@@ -1,1 +1,4 @@
-minilibx-linus/
+minilibx-linux/
+obj/
+libft/obj/
+libft.a
