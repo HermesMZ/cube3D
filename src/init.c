@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/15 17:58:00 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:15:37 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	init_mlx(t_data *data)
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cube3D");
 	if (!data->win)
 		return (free(data->mlx), 0);
-
 	return (1);
 }
 

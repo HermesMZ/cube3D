@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:49:00 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/15 18:07:29 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/15 18:20:49 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,37 +34,6 @@ t_color	*extract_rgb(t_data *data, t_color *color, char *line)
 	return (color);
 }
 
-// First pass: count map lines and find max width
-int	count_map_lines(char *filename, t_data *data)
-{
-	int		fd;
-	char	*line;
-	int		map_started = 0;
-	int		len;
-
-	fd = open(filename, O_RDONLY);
-	if (fd < 0)
-		return (0);
-	data->map->height = 0;
-	data->map->width = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		len = ft_strlen(line);
-		if (len > 0 && (line[0] == '1' || line[0] == '0' || map_started))
-		{
-			map_started = 1;
-			data->map->height++;
-			if (len > data->map->width)
-				data->map->width = len;
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	return (1);
-}
-
 // Allocate memory for the map grid
 int	allocate_map_grid(t_data *data)
 {
@@ -72,15 +41,15 @@ int	allocate_map_grid(t_data *data)
 
 	if (data->map->height <= 0 || data->map->width <= 0)
 		return (0);
-	data->map->grid = ft_my_malloc(data->allocator, 
-		sizeof(char *) * (data->map->height + 1));
+	data->map->grid = ft_my_malloc(data->allocator,
+			sizeof(char *) * (data->map->height + 1));
 	if (!data->map->grid)
 		return (0);
 	i = 0;
 	while (i < data->map->height)
 	{
-		data->map->grid[i] = ft_my_malloc(data->allocator, 
-			sizeof(char) * (data->map->width + 1));
+		data->map->grid[i] = ft_my_malloc(data->allocator,
+				sizeof(char) * (data->map->width + 1));
 		if (!data->map->grid[i])
 			return (0);
 		ft_memset(data->map->grid[i], ' ', data->map->width);
@@ -144,15 +113,10 @@ int	parse_file(char *filename, t_data **data)
 	int		fd;
 	char	*line;
 
-	// First pass: count map dimensions
 	if (!count_map_lines(filename, *data))
 		return (0);
-	
-	// Allocate memory for the map grid
 	if (!allocate_map_grid(*data))
 		return (0);
-
-	// Second pass: parse textures, colors, and fill the map
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (0);
