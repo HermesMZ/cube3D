@@ -17,7 +17,12 @@ INCLUDES_DIR = include
 INCLUDES = -I $(INCLUDES_DIR) -I $(LIBFT_DIR)/includes -I $(LIBMLX_DIR)
 
 SRC = \
+	clean.c \
+	debug.c \
+	init.c \
 	main.c \
+	parsing.c \
+
 
 SRC_ALL = \
 	$(addprefix $(SRC_DIR)/, $(SRC)) \
