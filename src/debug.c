@@ -6,11 +6,11 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:23:42 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 11:26:20 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:40:01 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3D.h"
+#include "cub3D.h"
 
 void	debug_print_map(t_map *map)
 {

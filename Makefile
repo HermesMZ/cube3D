@@ -6,6 +6,7 @@ MLX_LIBS = -Lminilibx-linux -lmlx_Linux -lm
 X_LIBS = -lXext -lX11
 
 SRC_DIR = src
+PARSING_DIR = $(SRC_DIR)/parsing
 OBJ_DIR = obj
 
 LIBFT_DIR = libft
@@ -22,25 +23,28 @@ SRC = \
 	init.c \
 	main.c \
 	map.c \
+
+PARSING_SRC = \
+	check_map.c \
+	file.c \
 	parsing.c \
 	player.c \
 
 
 SRC_ALL = \
 	$(addprefix $(SRC_DIR)/, $(SRC)) \
+	$(addprefix $(PARSING_DIR)/, $(PARSING_SRC)) \
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o, $(SRC_ALL))
 
-all: $(LIBFT) $(LIBMLX) $(NAME)
+all: $(LIBFT) $(LIBMLX) $(NAME) $(INCLUDES_DIR)/cub3D.h
 
 $(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(MLX_LIBS) $(X_LIBS) -no-pie -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
 	@echo "Construction de libft.a..."

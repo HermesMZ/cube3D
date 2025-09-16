@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cube3D.h                                           :+:      :+:    :+:   */
+/*   cub3D.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 13:43:23 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 11:24:08 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:24:30 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUBE3D_H
-# define CUBE3D_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "mlx.h"
 # include "libft.h"
@@ -24,8 +24,25 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
+# ifndef WIN_WIDTH
+#  define WIN_WIDTH 800
+# endif
+
+# ifndef WIN_HEIGHT
+#  define WIN_HEIGHT 600
+# endif
+
+typedef struct s_keys
+{
+	bool	forward;
+	bool	backward;
+	bool	left;
+	bool	right;
+	bool	run;
+	bool	open;
+	bool	fire;
+	int		strafe;
+}	t_keys;
 
 typedef struct s_color
 {
@@ -59,9 +76,13 @@ typedef struct s_map
 
 typedef struct s_data
 {
+	char		**file;
+	t_keys		keys;
 	void		*mlx;
 	void		*win;
 	t_textures	*textures;
+	int			width;
+	int			height;
 	t_map		*map;
 	t_player	*player;
 	t_lalloc	*allocator;
@@ -69,9 +90,11 @@ typedef struct s_data
 
 int		init_data(t_data **data, t_lalloc *allocator);
 
+int		load_file(char *filename, t_data *data);
 int		parse_file(char *filename, t_data **data);
-int		parse_map(char *filename, t_data **data);
-int		parse_map_line(t_data *data, char *line, int *map_row);
+
+int		map_check(t_map *map);
+
 
 int		init_player(t_data *data);
 
