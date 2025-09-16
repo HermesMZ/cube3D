@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/15 18:15:37 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 10:32:16 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	init_data(t_data **data, t_lalloc *allocator)
 	if (!(*data)->player)
 		return (clean_data(*data), 0);
 	*(*data)->player = (t_player){0};
-	if (!init_mlx(*data))
-		return (clean_data(*data), 0);
+	// if (!init_mlx(*data))
+	// 	return (clean_data(*data), 0);
 	return (1);
 }

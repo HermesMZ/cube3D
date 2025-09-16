@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:11:18 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/15 18:07:11 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 10:31:39 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ void	clean_data(t_data *data)
 		ft_my_free(data->allocator, data->win);
 	if (data->mlx)
 		ft_my_free(data->allocator, data->mlx);
-	ft_my_free(data->allocator, data);
+	ft_my_free_all(data->allocator);
 }

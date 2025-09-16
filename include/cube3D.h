@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 13:43:23 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/15 18:15:13 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 11:24:08 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_textures
 typedef struct s_player
 {
 	char		direction;
-	char		position;
+	char		position[2];
 }			t_player;
 
 typedef struct s_map
@@ -68,7 +68,12 @@ typedef struct s_data
 }				t_data;
 
 int		init_data(t_data **data, t_lalloc *allocator);
+
 int		parse_file(char *filename, t_data **data);
+int		parse_map(char *filename, t_data **data);
+int		parse_map_line(t_data *data, char *line, int *map_row);
+
+int		init_player(t_data *data);
 
 void	clean_data(t_data *data);
 

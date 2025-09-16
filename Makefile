@@ -21,7 +21,9 @@ SRC = \
 	debug.c \
 	init.c \
 	main.c \
+	map.c \
 	parsing.c \
+	player.c \
 
 
 SRC_ALL = \

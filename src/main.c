@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error - Failed to parse map file\n"), 1);
 	debug_print_data(data);
 	clean_data(data);
+	data = NULL;
 	ft_printf("Goodbye, Cube3D!\n");
 	return (0);
 }
