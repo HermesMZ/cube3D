@@ -6,11 +6,31 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:11:18 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 12:40:01 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 17:33:57 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	clean_ids(t_data *data, t_id *ids)
+{
+	t_id	*current;
+	t_id	*next;
+
+	if (!ids)
+		return ;
+	current = ids;
+	while (current)
+	{
+		next = current->next;
+		if (current->key)
+			ft_my_free(data->allocator, current->key);
+		if (current->value)
+			ft_my_free(data->allocator, current->value);
+		ft_my_free(data->allocator, current);
+		current = next;
+	}
+}
 
 void	clean_map(t_data *data, t_map *map)
 {
@@ -56,15 +76,11 @@ void	clean_data(t_data *data)
 	if (data->player)
 		ft_my_free(data->allocator, data->player);
 	if (data->map)
-	{
 		clean_map(data, data->map);
-		data->map = NULL;
-	}
 	if (data->textures)
-	{
 		clean_textures(data, data->textures);
-		data->textures = NULL;
-	}
+	if (data->ids)
+		clean_ids(data, data->ids);
 	if (data->win)
 		ft_my_free(data->allocator, data->win);
 	if (data->mlx)

@@ -24,6 +24,7 @@ SRC = \
 	main.c \
 
 PARSING_SRC = \
+	check_file.c \
 	check_map.c \
 	file.c \
 	map_utils.c \

@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:49:00 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 15:17:27 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 18:46:32 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ t_color	*extract_rgb(t_data *data, t_color *color, char *line)
 // Fonction pour chercher une texture spécifique dans le fichier
 char	*find_texture(t_data *data, char *identifier)
 {
-	int		i;
+	t_id	*current;
 
-	if (!data->file || !identifier)
+	if (!data->ids || !identifier)
 		return (NULL);
-	i = 0;
-	while (data->file[i])
+	current = data->ids;
+	while (current)
 	{
-		if (data->file[i][0] == identifier[0])
-			return (ft_my_strdup(data->allocator, data->file[i] + 2));
-		i++;
+		if (ft_strncmp(current->key, identifier, ft_strlen(identifier)) == 0)
+			return (ft_my_strdup(data->allocator, current->value));
+		current = current->next;
 	}
 	return (NULL);
 }
@@ -58,22 +58,22 @@ char	*find_texture(t_data *data, char *identifier)
 // Fonction pour chercher une couleur spécifique dans le fichier
 t_color	*find_color(t_data *data, char *identifier)
 {
-	int		i;
 	t_color	*color;
+	t_id	*current;
 
-	if (!data->file || !identifier)
+	if (!data->ids || !identifier)
 		return (NULL);
-	i = 0;
-	while (data->file[i])
+	current = data->ids;
+	while (current)
 	{
-		if (data->file[i][0] == identifier[0])
+		if (ft_strncmp(current->key, identifier, ft_strlen(identifier)) == 0)
 		{
 			color = ft_my_malloc(data->allocator, sizeof(t_color));
 			if (!color)
 				return (NULL);
-			return (extract_rgb(data, color, data->file[i]));
+			return (extract_rgb(data, color, current->value));
 		}
-		i++;
+		current = current->next;
 	}
 	return (NULL);
 }
@@ -83,12 +83,12 @@ int	parse_textures(t_data *data)
 {
 	if (!data || !data->textures)
 		return (0);
-	data->textures->north_texture = find_texture(data, "N");
-	data->textures->south_texture = find_texture(data, "S");
-	data->textures->west_texture = find_texture(data, "W");
-	data->textures->east_texture = find_texture(data, "E");
-	data->textures->floor_color = find_color(data, "F");
-	data->textures->ceiling_color = find_color(data, "C");
+	data->textures->north_texture = find_texture(data, "NO");
+	data->textures->south_texture = find_texture(data, "SO");
+	data->textures->west_texture = find_texture(data, "WE");
+	data->textures->east_texture = find_texture(data, "EA");
+	data->textures->floor_color = find_color(data, "F ");
+	data->textures->ceiling_color = find_color(data, "C ");
 	return (1);
 }
 
@@ -97,9 +97,11 @@ int	parse_file(char *filename, t_data **data)
 {
 	if (!load_file(filename, *data))
 		return (ft_printf("Error: Failed to load file\n"), 0);
+	if (!mandatory_ids_present((*data)->ids))
+		return (ft_printf("Error: Missing or duplicate mandatory id\n"), 0);
 	if (!parse_textures(*data))
 		return (ft_printf("Error: Failed to parse textures\n"), 0);
-	if (!parse_map_from_file(data))
+	if (!parse_map_from_file(data, filename))
 		return (ft_printf("Error: Failed to parse map\n"), 0);
 	if (!map_check((*data)->map))
 		return (ft_printf("Error: Map is not valid or not closed\n"), 0);
