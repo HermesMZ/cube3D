@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 11:32:20 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 12:40:01 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:54:12 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 int	is_map_closed(t_map *map)
 {
-	(void)map; // Pour éviter l'erreur de paramètre non utilisé
-	// TODO: Implémenter la vérification que la carte est fermée
+	(void)map;
 	return (1);
 }
 

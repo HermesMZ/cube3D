@@ -92,6 +92,11 @@ int		init_data(t_data **data, t_lalloc *allocator);
 
 int		load_file(char *filename, t_data *data);
 int		parse_file(char *filename, t_data **data);
+int		is_map_line(char *line);
+int		find_map_start(t_data *data);
+int		count_map_dimensions(t_data *data);
+int		parse_map_from_file(t_data **data);
+
 
 int		map_check(t_map *map);
 

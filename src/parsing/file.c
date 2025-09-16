@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:12:41 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 12:40:01 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 12:53:54 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,10 @@ int	load_file(char *filename, t_data *data)
 	int		line_count;
 
 	if (!filename || !data || !data->allocator)
-	{
-		ft_printf("Error: load_file - invalid parameters\n");
-		return (0);
-	}
-	
+		return (ft_printf("Error: load_file - invalid parameters\n"), 0);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_printf("Error: load_file - cannot open file %s\n", filename);
-		return (0);
-	}
-	
+		return (ft_printf("Error: load_file - %s\n", filename), 0);
 	line_count = 0;
 	line = get_next_line(fd);
 	while (line)
@@ -70,23 +62,11 @@ int	load_file(char *filename, t_data *data)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	
-	ft_printf("load_file: found %d lines\n", line_count);
-	
 	data->file = ft_my_malloc(data->allocator, sizeof(char *)
 			* (line_count + 1));
 	if (!data->file)
-	{
-		ft_printf("Error: load_file - failed to allocate data->file\n");
-		return (0);
-	}
-	
+		return (ft_printf("Error: failed to allocate data->file\n"), 0);
 	if (!fill_data_file(filename, data))
-	{
-		ft_printf("Error: load_file - failed to fill data->file\n");
-		return (0);
-	}
-	
-	ft_printf("load_file: successfully loaded file\n");
+		return (ft_printf("Error: failed to fill data->file\n"), 0);
 	return (1);
 }

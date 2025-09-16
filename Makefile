@@ -22,11 +22,12 @@ SRC = \
 	debug.c \
 	init.c \
 	main.c \
-	map.c \
 
 PARSING_SRC = \
 	check_map.c \
 	file.c \
+	map_utils.c \
+	map.c \
 	parsing.c \
 	player.c \
 
