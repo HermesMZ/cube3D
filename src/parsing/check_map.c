@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/16 11:32:20 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 15:11:14 by mzimeris         ###   ########.fr       */
+/*   Created: 2025/09/16 15:30:51 by mzimeris          #+#    #+#             */
+/*   Updated: 2025/09/16 15:31:16 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	is_valid_cell(char c)
 {
-	return (c == '0' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W');
+	if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		return (1);
+	return (0);
 }
 
 int	check_cell(t_map *map, int i, int j)
@@ -81,4 +82,3 @@ int	map_check(t_map *map)
 		return (0);
 	return (1);
 }
-	
