@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:23:42 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 12:40:01 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 14:30:59 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	debug_print_player(t_player *player)
 		return ;
 	ft_printf("Player Position: %d %d\n", player->position[0],
 		player->position[1]);
-	ft_printf("Player Direction: %d\n", player->direction);
+	ft_printf("Player Direction: %c\n", player->direction);
 }
 
 void	debug_print_data(t_data *data)

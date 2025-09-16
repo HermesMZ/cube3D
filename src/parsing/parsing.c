@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:49:00 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 12:45:13 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 15:17:27 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,9 @@ int	parse_file(char *filename, t_data **data)
 		return (ft_printf("Error: Failed to parse textures\n"), 0);
 	if (!parse_map_from_file(data))
 		return (ft_printf("Error: Failed to parse map\n"), 0);
+	if (!map_check((*data)->map))
+		return (ft_printf("Error: Map is not valid or not closed\n"), 0);
+	if (init_player(*data) != 1)
+		return (ft_printf("Error: One and only one player start position\n"), 0);
 	return (1);
 }

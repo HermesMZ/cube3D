@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 13:42:48 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 12:40:01 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/16 15:17:56 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	ft_printf("Data initialized successfully\n");
 	ft_printf("Parsing file...\n");
 	if (!parse_file(argv[1], &data))
-		return (ft_printf("Error - Failed to parse map file\n"), 1);
+		return (1);
 	debug_print_data(data);
 	clean_data(data);
 	data = NULL;
