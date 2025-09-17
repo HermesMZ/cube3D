@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:49:00 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 18:46:32 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 13:57:00 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,5 +107,6 @@ int	parse_file(char *filename, t_data **data)
 		return (ft_printf("Error: Map is not valid or not closed\n"), 0);
 	if (init_player(*data) != 1)
 		return (ft_printf("Error: One and only one player start position\n"), 0);
+	get_next_line(-1);
 	return (1);
 }

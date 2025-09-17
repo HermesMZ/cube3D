@@ -7,6 +7,7 @@ X_LIBS = -lXext -lX11
 
 SRC_DIR = src
 PARSING_DIR = $(SRC_DIR)/parsing
+UTILS_DIR = $(SRC_DIR)/utils
 OBJ_DIR = obj
 
 LIBFT_DIR = libft
@@ -18,9 +19,6 @@ INCLUDES_DIR = include
 INCLUDES = -I $(INCLUDES_DIR) -I $(LIBFT_DIR)/includes -I $(LIBMLX_DIR)
 
 SRC = \
-	clean.c \
-	debug.c \
-	init.c \
 	main.c \
 
 PARSING_SRC = \
@@ -32,10 +30,16 @@ PARSING_SRC = \
 	parsing.c \
 	player.c \
 
+UTILS_SRC = \
+	clean.c \
+	debug.c \
+	init.c \
+
 
 SRC_ALL = \
 	$(addprefix $(SRC_DIR)/, $(SRC)) \
 	$(addprefix $(PARSING_DIR)/, $(PARSING_SRC)) \
+	$(addprefix $(UTILS_DIR)/, $(UTILS_SRC)) \
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o, $(SRC_ALL))
 

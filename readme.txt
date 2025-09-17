@@ -5,6 +5,8 @@ Ex :
 data->textures->ceiling_color = ft_my_malloc(data->allocator, sizeof(t_color));
 ft_my_free(data->allocator, map);
 
+fichier de config test : subject.cub
+
 Structure principale s_data :
 tout les ids qu'il peut y avoir dans le fichier sont stockés dans une liste chaînée
 	* key
@@ -29,7 +31,7 @@ et l'allocator pour stocker tout les my_alloc et pouvoir tous les free a la fin.
 
 
 Sinon, les fonctions clean sont ok pour l'instant. Il faudra peut-etre les modifier une fois qu'on
-aura implemente la partie graphique.
+aura implementé la partie graphique.
 
 Quelques fonctions de debug.
 Je les appelle pour l'instant dans le main pour voir le resultat du parsing.
@@ -37,4 +39,7 @@ Je les appelle pour l'instant dans le main pour voir le resultat du parsing.
 
  make && valgrind ./cub3D subject.cub 
 
- pour tester.
+ pour tester. Pour l'instant il n'y a que le résultat du parsing j'ai commenté tout ce qui touche
+ au graphisme.
+
+ 
