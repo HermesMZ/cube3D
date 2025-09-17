@@ -1,0 +1,20 @@
+{
+   MLX_INIT_LEAK
+   Memcheck:Leak
+   fun:malloc
+   fun:mlx_init
+}
+{
+   X11_writev_uninit
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   obj:*libxcb.so*
+}
+{
+   X11_writev_uninit2
+   Memcheck:Param
+   writev(vector[0])
+   fun:writev
+   obj:*libX11.so*
+}

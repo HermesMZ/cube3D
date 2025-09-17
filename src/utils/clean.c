@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:11:18 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 13:08:49 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:58:44 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	clean_data(t_data *data)
 {
 	if (!data)
 		return ;
-	// if (data->mlx)
-	// 	mlx_destroy_window(data->mlx, data->win);
 	if (data->player)
 		ft_my_free(data->allocator, data->player);
 	if (data->map)
@@ -81,9 +79,26 @@ void	clean_data(t_data *data)
 		clean_textures(data, data->textures);
 	if (data->ids)
 		clean_ids(data, data->ids);
-	// if (data->win)
-	// 	ft_my_free(data->allocator, data->win);
-	// if (data->mlx)
-	// 	ft_my_free(data->allocator, data->mlx);
 	ft_my_free_all(data->allocator);
+}
+
+int	end_display(t_data *data)
+{
+	if (data && data->mlx && data->mlx->img && data->mlx->img->img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img->img);
+	if (data && data->mlx && data->mlx->img)
+		free(data->mlx->img);
+	if (data && data->mlx && data->mlx->win_ptr)
+		mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
+	if (data && data->mlx && data->mlx->mlx_ptr)
+	{
+		mlx_destroy_display(data->mlx->mlx_ptr);
+		free(data->mlx->mlx_ptr);
+	}
+	if (data && data->mlx)
+		ft_my_free(data->allocator, data->mlx);
+	if (data)
+		clean_data(data);
+	exit(0);
+	return (0);
 }

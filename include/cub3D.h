@@ -24,9 +24,6 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define WIN_WIDTH 800
-# define WIN_HEIGHT 600
-
 typedef struct s_id
 {
 	char			*key;
@@ -122,8 +119,17 @@ typedef struct s_data
 
 // hooks
 int		key_press(int keysym, t_data *data);
-int		key_release(int keysym, t_mlx_data *data);
+int		key_release(int keysym, t_data *data);
 
+// keys
+void	handle_open_key(t_data *data);
+void	handle_fire_key(t_data *data);
+void	move_forward(t_data *data);
+void	move_backward(t_data *data);
+void	turn_left(t_data *data);
+void	turn_right(t_data *data);
+void	translate_left(t_data *data);
+void	translate_right(t_data *data);
 
 // parsing
 int		check_input(t_data *data, char *filename);
@@ -142,6 +148,7 @@ int		init_player(t_data *data);
 // cleanup
 int		init_data(t_data **data, t_lalloc *allocator);
 void	clean_data(t_data *data);
+int		end_display(t_data *data);
 
 // debug
 void	debug_print_map(t_map *map);

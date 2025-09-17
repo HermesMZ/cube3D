@@ -1,13 +1,16 @@
 NAME = cub3D
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 MLX_LIBS = -Lminilibx-linux -lmlx_Linux -lm
 X_LIBS = -lXext -lX11
 
 SRC_DIR = src
+HOOKS_DIR = $(SRC_DIR)/hooks
+KEYS_DIR = $(SRC_DIR)/keys
 PARSING_DIR = $(SRC_DIR)/parsing
 UTILS_DIR = $(SRC_DIR)/utils
+
 OBJ_DIR = obj
 
 LIBFT_DIR = libft
@@ -20,6 +23,15 @@ INCLUDES = -I $(INCLUDES_DIR) -I $(LIBFT_DIR)/includes -I $(LIBMLX_DIR)
 
 SRC = \
 	main.c \
+
+HOOKS_SRC = \
+	hooks.c \
+
+KEYS_SRC = \
+	actions.c \
+	handlers.c \
+	moves.c \
+	strafe.c \
 
 PARSING_SRC = \
 	check_file.c \
@@ -38,6 +50,8 @@ UTILS_SRC = \
 
 SRC_ALL = \
 	$(addprefix $(SRC_DIR)/, $(SRC)) \
+	$(addprefix $(HOOKS_DIR)/, $(HOOKS_SRC)) \
+	$(addprefix $(KEYS_DIR)/, $(KEYS_SRC)) \
 	$(addprefix $(PARSING_DIR)/, $(PARSING_SRC)) \
 	$(addprefix $(UTILS_DIR)/, $(UTILS_SRC)) \
 

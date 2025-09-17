@@ -3,25 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 12:28:59 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:53:13 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// int	init_mlx(t_data *data)
-// {
-// 	data->mlx = mlx_init();
-// 	if (!data->mlx)
-// 		return (0);
-// 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cube3D");
-// 	if (!data->win)
-// 		return (free(data->mlx), 0);
-// 	return (1);
-// }
+// gerer la resolution de la fenetre
+int	init_mlx(t_data *data)
+{
+	data->mlx = ft_my_malloc(data->allocator, sizeof(t_mlx_data));
+	if (!data->mlx)
+		return (0);
+	*data->mlx = (t_mlx_data){0};
+	data->mlx->mlx_ptr = mlx_init();
+	if (!data->mlx->mlx_ptr)
+		return (0);
+	data->mlx->win_ptr = mlx_new_window(data->mlx->mlx_ptr, 800, 600, "Cube3D");
+	if (!data->mlx->win_ptr)
+		return (free(data->mlx), 0);
+	return (1);
+}
 
 int	init_textures(t_data *data)
 {
@@ -62,7 +67,7 @@ int	init_data(t_data **data, t_lalloc *allocator)
 	if (!(*data)->player)
 		return (clean_data(*data), 0);
 	*(*data)->player = (t_player){0};
-	// if (!init_mlx(*data))
-	// 	return (clean_data(*data), 0);
+	if (!init_mlx(*data))
+		return (clean_data(*data), 0);
 	return (1);
 }
