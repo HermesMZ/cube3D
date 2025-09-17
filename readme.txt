@@ -29,7 +29,6 @@ la gestion de la fenêtre et de la bibliothèque graphique est commentée pour l
 
 et l'allocator pour stocker tout les my_alloc et pouvoir tous les free a la fin.
 
-
 Sinon, les fonctions clean sont ok pour l'instant. Il faudra peut-etre les modifier une fois qu'on
 aura implementé la partie graphique.
 
