@@ -86,15 +86,31 @@ typedef struct s_map
 	int			width;
 }				t_map;
 
+// typedef struct s_my_img
+// {
+// 	void	*img;
+// 	char	*addr;
+// 	int		bits_per_pixel;
+// 	int		line_len;
+// 	int		endian;
+// }	t_my_img;
+
+// typedef struct s_mlx_data
+// {
+// 	void		*mlx_ptr;
+// 	int			width;
+// 	int			height;
+// 	void		*win_ptr;
+// 	t_map		*map;
+// 	t_my_img	*img;
+// }	t_mlx_data;
+
 typedef struct s_data
 {
 	t_id		*ids;
 	t_keys		keys;
-	void		*mlx;
-	void		*win;
 	t_textures	*textures;
-	int			width;
-	int			height;
+	// t_mlx_data	*mlx;
 	t_map		*map;
 	t_player	*player;
 	t_lalloc	*allocator;

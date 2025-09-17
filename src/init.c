@@ -6,22 +6,22 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 18:32:12 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 12:28:59 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	init_mlx(t_data *data)
-{
-	data->mlx = mlx_init();
-	if (!data->mlx)
-		return (0);
-	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cube3D");
-	if (!data->win)
-		return (free(data->mlx), 0);
-	return (1);
-}
+// int	init_mlx(t_data *data)
+// {
+// 	data->mlx = mlx_init();
+// 	if (!data->mlx)
+// 		return (0);
+// 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "Cube3D");
+// 	if (!data->win)
+// 		return (free(data->mlx), 0);
+// 	return (1);
+// }
 
 int	init_textures(t_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:11:18 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 17:33:57 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 13:08:49 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	clean_data(t_data *data)
 {
 	if (!data)
 		return ;
-	if (data->mlx)
-		mlx_destroy_window(data->mlx, data->win);
+	// if (data->mlx)
+	// 	mlx_destroy_window(data->mlx, data->win);
 	if (data->player)
 		ft_my_free(data->allocator, data->player);
 	if (data->map)
@@ -81,9 +81,9 @@ void	clean_data(t_data *data)
 		clean_textures(data, data->textures);
 	if (data->ids)
 		clean_ids(data, data->ids);
-	if (data->win)
-		ft_my_free(data->allocator, data->win);
-	if (data->mlx)
-		ft_my_free(data->allocator, data->mlx);
+	// if (data->win)
+	// 	ft_my_free(data->allocator, data->win);
+	// if (data->mlx)
+	// 	ft_my_free(data->allocator, data->mlx);
 	ft_my_free_all(data->allocator);
 }

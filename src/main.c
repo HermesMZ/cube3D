@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 13:42:48 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 18:46:08 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 11:11:50 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	main(int argc, char **argv)
 		return (1);
 	debug_print_data(data);
 	clean_data(data);
-	data = NULL;
 	ft_printf("Goodbye, Cube3D!\n");
 	return (0);
 }
