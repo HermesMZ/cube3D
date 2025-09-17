@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   strafe.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:42:53 by zoum              #+#    #+#             */
-/*   Updated: 2025/10/03 15:04:04 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/04 13:35:03 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+// Move the player left perpendicular to their current direction.
 void	translate_left(t_data *data)
 {
 	double	new_x;
@@ -28,6 +29,7 @@ void	translate_left(t_data *data)
 	}
 }
 
+// Move the player right perpendicular to their current direction.
 void	translate_right(t_data *data)
 {
 	double	new_x;

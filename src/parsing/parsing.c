@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:49:00 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/03 14:13:26 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/04 13:35:38 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	parse_file(char *filename, t_data **data)
 	if (!map_check((*data)->map))
 		return (printf("Error: Map is not valid or not closed\n"), 0);
 	if (init_player(*data) != 1)
-		return (printf("Error: One and only one player start position\n"), 0);
+		return (ft_printf("Error: One and only one player needed\n"), 0);
 	get_next_line(-1);
 	return (1);
 }
