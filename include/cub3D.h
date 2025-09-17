@@ -51,9 +51,8 @@ typedef struct s_keys
 	bool	left;
 	bool	right;
 	bool	run;
-	bool	open;
-	bool	fire;
 	bool	strafe;
+	bool	minimap;
 }				t_keys;
 
 typedef struct s_color
@@ -76,7 +75,12 @@ typedef struct s_textures
 typedef struct s_player
 {
 	char		direction;
-	char		position[2];
+	char		start_position[2];
+	double		x;
+	double		y;
+	double		movement_speed;
+	double		rotation_speed;
+	// il y aura sûrment la direction utilisée dans le raycasting
 }				t_player;
 
 typedef struct s_map
@@ -86,40 +90,43 @@ typedef struct s_map
 	int			width;
 }				t_map;
 
-// typedef struct s_my_img
-// {
-// 	void	*img;
-// 	char	*addr;
-// 	int		bits_per_pixel;
-// 	int		line_len;
-// 	int		endian;
-// }	t_my_img;
+typedef struct s_my_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+}				t_my_img;
 
-// typedef struct s_mlx_data
-// {
-// 	void		*mlx_ptr;
-// 	int			width;
-// 	int			height;
-// 	void		*win_ptr;
-// 	t_map		*map;
-// 	t_my_img	*img;
-// }	t_mlx_data;
+typedef struct s_mlx_data
+{
+	void		*mlx_ptr;
+	int			width;
+	int			height;
+	void		*win_ptr;
+	t_map		*map;
+	t_my_img	*img;
+}				t_mlx_data;
 
 typedef struct s_data
 {
 	t_id		*ids;
 	t_keys		keys;
 	t_textures	*textures;
-	// t_mlx_data	*mlx;
+	t_mlx_data	*mlx;
 	t_map		*map;
 	t_player	*player;
 	t_lalloc	*allocator;
 }				t_data;
 
-int		init_data(t_data **data, t_lalloc *allocator);
+// hooks
+int		key_press(int keysym, t_data *data);
+int		key_release(int keysym, t_mlx_data *data);
 
+
+// parsing
 int		check_input(t_data *data, char *filename);
-
 int		load_file(char *filename, t_data *data);
 int		parse_file(char *filename, t_data **data);
 int		is_map_line(char *line);
@@ -127,19 +134,19 @@ int		find_map_start(t_data *data);
 int		count_map_dimensions(t_data *data, char *line, int fd);
 int		parse_map_from_file(t_data **data, char *filename);
 int		mandatory_ids_present(t_id *ids);
-
-
 int		map_check(t_map *map);
 
-
+// init
 int		init_player(t_data *data);
 
+// cleanup
+int		init_data(t_data **data, t_lalloc *allocator);
 void	clean_data(t_data *data);
 
+// debug
 void	debug_print_map(t_map *map);
 void	debug_print_textures(t_textures *textures);
 void	debug_print_player(t_player *player);
 void	debug_print_data(t_data *data);
-
 
 #endif

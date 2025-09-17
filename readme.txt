@@ -20,7 +20,7 @@ la map est stockée dans une structure t_map *map :
 	* width : largeur de la map (nombre de colonnes)
 	* height : hauteur de la map (nombre de lignes)
 le joueur est stocké dans une structure t_player *player :
-	* position : tableau de 2 int (x et y)
+	* start_position : tableau de 2 int (x et y)
 	* direction : char ('N', 'S', 'E', 'W')
 la structure t_keys qui va gerer les touches avec les keyhooks.
 

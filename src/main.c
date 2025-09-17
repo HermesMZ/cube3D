@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 13:42:48 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 11:11:50 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 23:03:50 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error - Failed to initialize data\n"), 1);
 	if (!check_input(data, argv[1]))
 		return (1);
+	mlx_hook(data->mlx->win_ptr, KeyPress, KeyPressMask, key_press, data);
+	mlx_hook(data->mlx->win_ptr, KeyRelease, KeyReleaseMask, key_release, data);
 	debug_print_data(data);
 	clean_data(data);
 	ft_printf("Goodbye, Cube3D!\n");

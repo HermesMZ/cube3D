@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:23:42 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 14:30:59 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:31:01 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	debug_print_player(t_player *player)
 {
 	if (!player)
 		return ;
-	ft_printf("Player Position: %d %d\n", player->position[0],
-		player->position[1]);
+	ft_printf("Player start_position: %d %d\n", player->start_position[0],
+		player->start_position[1]);
 	ft_printf("Player Direction: %c\n", player->direction);
 }
 

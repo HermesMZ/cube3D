@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 11:21:21 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 18:47:15 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/09/17 22:31:01 by zoum             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	init_player(t_data *data)
 				|| data->map->grid[i][j] == 'E' || data->map->grid[i][j] == 'W')
 			{
 				data->player->direction = data->map->grid[i][j];
-				data->player->position[0] = i;
-				data->player->position[1] = j;
+				data->player->start_position[0] = i;
+				data->player->start_position[1] = j;
 				player_count++;
 			}
 		}
