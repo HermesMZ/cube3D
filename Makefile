@@ -10,6 +10,7 @@ HOOKS_DIR = $(SRC_DIR)/hooks
 KEYS_DIR = $(SRC_DIR)/keys
 PARSING_DIR = $(SRC_DIR)/parsing
 UTILS_DIR = $(SRC_DIR)/utils
+RAYCASTION_DIR = $(SRC_DIR)/raycasting
 
 OBJ_DIR = obj
 
@@ -47,6 +48,10 @@ UTILS_SRC = \
 	debug.c \
 	init.c \
 
+RAYCASTION_SRC = \
+	map_background.c \
+	render_2D.c \
+
 
 SRC_ALL = \
 	$(addprefix $(SRC_DIR)/, $(SRC)) \
@@ -54,6 +59,7 @@ SRC_ALL = \
 	$(addprefix $(KEYS_DIR)/, $(KEYS_SRC)) \
 	$(addprefix $(PARSING_DIR)/, $(PARSING_SRC)) \
 	$(addprefix $(UTILS_DIR)/, $(UTILS_SRC)) \
+	$(addprefix $(RAYCASTION_DIR)/, $(RAYCASTION_SRC)) \
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o, $(SRC_ALL))
 

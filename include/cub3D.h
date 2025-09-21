@@ -72,12 +72,15 @@ typedef struct s_textures
 typedef struct s_player
 {
 	char		direction;
-	char		start_position[2];
+	char		start_position[8];
 	double		x;
 	double		y;
 	double		movement_speed;
 	double		rotation_speed;
-	// il y aura sûrment la direction utilisée dans le raycasting
+	double 		dirX;
+	double		dirY;
+	double		planeX;
+	double		planeY;
 }				t_player;
 
 typedef struct s_map
@@ -117,11 +120,36 @@ typedef struct s_data
 	t_lalloc	*allocator;
 }				t_data;
 
+typedef struct s_ray
+{
+    double cameraX;       // coordonnée de la caméra (-1 à 1)
+    double rayDirX;
+    double rayDirY;
+
+    int mapX;
+    int mapY;
+
+    double sideDistX;
+    double sideDistY;
+
+    double deltaDistX;
+    double deltaDistY;
+
+    double perpWallDist;
+
+    int stepX;
+    int stepY;
+    int hit;              // 0 = pas encore touché, 1 = mur trouvé
+    int side;             // 0 = mur vertical, 1 = mur horizontal
+}   t_ray;
+
+
 // hooks
 int		key_press(int keysym, t_data *data);
 int		key_release(int keysym, t_data *data);
 
 // keys
+void	handle_move_keys(t_data *data);
 void	handle_open_key(t_data *data);
 void	handle_fire_key(t_data *data);
 void	move_forward(t_data *data);
@@ -141,6 +169,7 @@ int		count_map_dimensions(t_data *data, char *line, int fd);
 int		parse_map_from_file(t_data **data, char *filename);
 int		mandatory_ids_present(t_id *ids);
 int		map_check(t_map *map);
+void	set_player_attribute(t_data *data);
 
 // init
 int		init_player(t_data *data);
@@ -155,5 +184,13 @@ void	debug_print_map(t_map *map);
 void	debug_print_textures(t_textures *textures);
 void	debug_print_player(t_player *player);
 void	debug_print_data(t_data *data);
+
+// Raycasting
+void	render_map2d(t_data *data, int tile_size);
+int		update(void *param);
+void    render_background(t_data *data, int x, int y);
+int		create_rgb(int r, int g, int b);
+void    put_pixel(t_my_img *img, int x, int y, int color);
+
 
 #endif

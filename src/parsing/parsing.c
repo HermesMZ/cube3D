@@ -87,8 +87,8 @@ int	parse_textures(t_data *data)
 	data->textures->south_texture = find_texture(data, "SO");
 	data->textures->west_texture = find_texture(data, "WE");
 	data->textures->east_texture = find_texture(data, "EA");
-	data->textures->floor_color = find_color(data, "F ");
-	data->textures->ceiling_color = find_color(data, "C ");
+	data->textures->floor_color = find_color(data, "F");
+	data->textures->ceiling_color = find_color(data, "C");
 	return (1);
 }
 

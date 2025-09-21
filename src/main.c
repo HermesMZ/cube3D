@@ -30,6 +30,7 @@ int	main(int argc, char **argv)
 	if (!check_input(data, argv[1]))
 		return (1);
 	debug_print_data(data);
+	mlx_loop_hook(data->mlx->mlx_ptr, update, data);
 	mlx_hook(data->mlx->win_ptr, KeyPress, KeyPressMask, key_press, data);
 	mlx_hook(data->mlx->win_ptr, KeyRelease, KeyReleaseMask, key_release, data);
 	mlx_hook(data->mlx->win_ptr, 17, 0, end_display, data);

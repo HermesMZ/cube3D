@@ -19,12 +19,25 @@ int	init_mlx(t_data *data)
 	if (!data->mlx)
 		return (0);
 	*data->mlx = (t_mlx_data){0};
+	data->mlx->width  = 800;
+	data->mlx->height = 600;
 	data->mlx->mlx_ptr = mlx_init();
 	if (!data->mlx->mlx_ptr)
 		return (0);
 	data->mlx->win_ptr = mlx_new_window(data->mlx->mlx_ptr, 800, 600, "Cube3D");
 	if (!data->mlx->win_ptr)
 		return (free(data->mlx), 0);
+	data->mlx->img = ft_my_malloc(data->allocator, sizeof(t_my_img));
+	if (!data->mlx->img)
+		return (0);
+	*data->mlx->img = (t_my_img){0};
+	data->mlx->img->img = mlx_new_image(data->mlx->mlx_ptr, 800, 600);
+	if (!data->mlx->img->img)
+		return (0);
+	data->mlx->img->addr = mlx_get_data_addr(data->mlx->img->img,
+											&data->mlx->img->bits_per_pixel,
+											&data->mlx->img->line_len,
+											&data->mlx->img->endian);
 	return (1);
 }
 

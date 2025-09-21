@@ -15,28 +15,56 @@
 
 void	move_forward(t_data *data)
 {
-	(void)data;
-	// Calculate the new position based on the player's direction
-	// and check for collisions with walls in the map grid.
-	// Update the player's position if the move is valid.
+	double newX;
+	double newY;
+
+	newX = data->player->x + data->player->dirX * data->player->movement_speed;
+	newY = data->player->y + data->player->dirY * data->player->movement_speed;
+	if (data->map->grid[(int)newY][(int)newX] != '1')
+	{
+		data->player->x = newX;
+		data->player->y = newY;
+	}
 }
 
 void	move_backward(t_data *data)
 {
-	(void)data;
-	// Calculate the new position based on the player's direction
-	// and check for collisions with walls in the map grid.
-	// Update the player's position if the move is valid.
-}
+	double newX;
+	double newY;
 
-void	turn_left(t_data *data)
-{
-	(void)data;
-	// Adjust the player's direction to the left by a small angle.
+	newX = data->player->x - data->player->dirX * data->player->movement_speed;
+	newY = data->player->y - data->player->dirY * data->player->movement_speed;
+	if (data->map->grid[(int)newY][(int)newX] != '1')
+	{
+		data->player->x = newX;
+		data->player->y = newY;
+	}
 }
 
 void	turn_right(t_data *data)
 {
-	(void)data;
-	// Adjust the player's direction to the right by a small angle.
+	double newX;
+	double newY;
+
+	newX = data->player->x - data->player->dirY * data->player->movement_speed;
+	newY = data->player->y + data->player->dirX * data->player->movement_speed;
+	if (data->map->grid[(int)newY][(int)newX] != '1')
+	{
+		data->player->x = newX;
+		data->player->y = newY;
+	}
+}
+
+void	turn_left(t_data *data)
+{
+	double newX;
+	double newY;
+
+	newX = data->player->x + data->player->dirY * data->player->movement_speed;
+	newY = data->player->y - data->player->dirX * data->player->movement_speed;
+	if (data->map->grid[(int)newY][(int)newX] != '1')
+	{
+		data->player->x = newX;
+		data->player->y = newY;
+	}
 }

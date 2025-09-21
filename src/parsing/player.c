@@ -33,9 +33,42 @@ int	init_player(t_data *data)
 				data->player->direction = data->map->grid[i][j];
 				data->player->start_position[0] = i;
 				data->player->start_position[1] = j;
+				data->player->movement_speed = 0.05;
+				data->player->rotation_speed = 0.05;
+				data->player->y = i + 0.5;
+				data->player->x = j + 0.5;
+				set_player_attribute(data);
 				player_count++;
 			}
 		}
 	}
 	return (player_count);
+}
+
+void	set_player_attribute(t_data *data)
+{
+	if (data->player->direction == 'N') {
+		data->player->dirX = 0;
+		data->player->dirY = -1;
+		data->player->planeX = 0.66;
+		data->player->planeY = 0;
+	}
+	else if (data->player->direction == 'S') {
+		data->player->dirX = 0;
+		data->player->dirY = 1;
+		data->player->planeX = -0.66;
+		data->player->planeY = 0;
+	}
+	else if (data->player->direction == 'E') {
+		data->player->dirX = 1;
+		data->player->dirY = 0;
+		data->player->planeX = 0;
+		data->player->planeY = 0.66;
+	}
+	else if (data->player->direction == 'W') {
+		data->player->dirX = -1;
+		data->player->dirY = 0;
+		data->player->planeX = 0;
+		data->player->planeY = -0.66;
+	}
 }

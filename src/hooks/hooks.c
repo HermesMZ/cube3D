@@ -16,42 +16,51 @@ int	key_press(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		end_display(data);
-	if (keysym == XK_space)
+	if (keysym == 32)
 		handle_fire_key(data);
-	if (keysym == XK_E)
+	if (keysym == 101)
 		handle_open_key(data);
-	if (keysym == XK_Tab)
-		data->keys.minimap = 1;
-	if (keysym == XK_W)
-		data->keys.forward = 1;
-	if (keysym == XK_S)
-		data->keys.backward = 1;
-	if (keysym == XK_A)
-		data->keys.left = 1;
-	if (keysym == XK_D)
-		data->keys.right = 1;
-	if (keysym == XK_Shift_L)
-		data->keys.strafe = 1;
-	if (keysym == XK_Control_L)
-		data->keys.run = 1;
+	if (keysym == 65289)
+		data->keys.minimap = true;
+	if (keysym == 122)
+		data->keys.forward = true;
+	if (keysym == 115)
+		data->keys.backward = true;
+	if (keysym == 113)
+		data->keys.left = true;
+	if (keysym == 100)
+		data->keys.right = true;
+	if (keysym == 65505)
+		data->keys.strafe = true;
+	if (keysym == 65507)
+		data->keys.run = true;
 	return (0);
 }
 
 int	key_release(int keysym, t_data *data)
 {
-	if (keysym == XK_Tab)
+	if (keysym == 65289)
 		data->keys.minimap = 0;
-	if (keysym == XK_W)
+	if (keysym == 122)
 		data->keys.forward = 0;
-	if (keysym == XK_S)
+	if (keysym == 115)
 		data->keys.backward = 0;
-	if (keysym == XK_A)
+	if (keysym == 113)
 		data->keys.left = 0;
-	if (keysym == XK_D)
+	if (keysym == 100)
 		data->keys.right = 0;
-	if (keysym == XK_Shift_L)
+	if (keysym == 65505)
 		data->keys.strafe = 0;
-	if (keysym == XK_Control_L)
+	if (keysym == 65507)
 		data->keys.run = 0;
+	return (0);
+}
+
+int	update(void *param)
+{
+	t_data *data = (t_data *)param;
+
+	handle_move_keys(data);
+	render_map2d(data, 23);
 	return (0);
 }

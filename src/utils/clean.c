@@ -82,23 +82,26 @@ void	clean_data(t_data *data)
 	ft_my_free_all(data->allocator);
 }
 
-int	end_display(t_data *data)
+int end_display(t_data *data)
 {
-	if (data && data->mlx && data->mlx->img && data->mlx->img->img)
-		mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img->img);
-	if (data && data->mlx && data->mlx->img)
-		free(data->mlx->img);
-	if (data && data->mlx && data->mlx->win_ptr)
-		mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
-	if (data && data->mlx && data->mlx->mlx_ptr)
-	{
-		mlx_destroy_display(data->mlx->mlx_ptr);
-		free(data->mlx->mlx_ptr);
-	}
-	if (data && data->mlx)
-		ft_my_free(data->allocator, data->mlx);
-	if (data)
-		clean_data(data);
-	exit(0);
-	return (0);
+    if (!data)
+        exit(0);
+    if (data->mlx)
+    {
+        if (data->mlx->img && data->mlx->img->img)
+            mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img->img);
+        if (data->mlx->win_ptr)
+            mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
+        if (data->mlx->mlx_ptr)
+        {
+            mlx_destroy_display(data->mlx->mlx_ptr);
+            free(data->mlx->mlx_ptr);
+        }
+        if (data->mlx->img)
+            ft_my_free(data->allocator, data->mlx->img);
+        ft_my_free(data->allocator, data->mlx);
+    }
+    clean_data(data);
+    exit(0);
+    return (0);
 }
