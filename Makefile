@@ -51,6 +51,7 @@ UTILS_SRC = \
 RAYCASTION_SRC = \
 	map_background.c \
 	render_2D.c \
+	raycasting.c \
 
 
 SRC_ALL = \

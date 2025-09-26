@@ -14,12 +14,28 @@
 
 void	translate_left(t_data *data)
 {
-	(void)data;
-	// Move the player left perpendicular to their current direction.
+	double newX;
+	double newY;
+
+	newX = data->player->x - data->player->dirY * data->player->movement_speed;
+	newY = data->player->y + data->player->dirX * data->player->movement_speed;
+	if (data->map->grid[(int)newY][(int)newX] != '1')
+	{
+		data->player->x = newX;
+		data->player->y = newY;
+	}
 }
 
 void	translate_right(t_data *data)
 {
-	(void)data;
-	// Move the player right perpendicular to their current direction.
+	double newX;
+	double newY;
+
+	newX = data->player->x + data->player->dirY * data->player->movement_speed;
+	newY = data->player->y - data->player->dirX * data->player->movement_speed;
+	if (data->map->grid[(int)newY][(int)newX] != '1')
+	{
+		data->player->x = newX;
+		data->player->y = newY;
+	}
 }

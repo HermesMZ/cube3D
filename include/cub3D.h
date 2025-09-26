@@ -23,6 +23,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include <float.h>
 
 typedef struct s_id
 {
@@ -48,7 +49,8 @@ typedef struct s_keys
 	bool	left;
 	bool	right;
 	bool	run;
-	bool	strafe;
+	bool	strafe_right;
+	bool	strafe_left;
 	bool	minimap;
 }				t_keys;
 
@@ -77,6 +79,7 @@ typedef struct s_player
 	double		y;
 	double		movement_speed;
 	double		rotation_speed;
+	double		base_speed;
 	double 		dirX;
 	double		dirY;
 	double		planeX;
@@ -122,26 +125,24 @@ typedef struct s_data
 
 typedef struct s_ray
 {
-    double cameraX;       // coordonnée de la caméra (-1 à 1)
-    double rayDirX;
-    double rayDirY;
-
-    int mapX;
-    int mapY;
-
-    double sideDistX;
-    double sideDistY;
-
-    double deltaDistX;
-    double deltaDistY;
-
-    double perpWallDist;
-
-    int stepX;
-    int stepY;
-    int hit;              // 0 = pas encore touché, 1 = mur trouvé
-    int side;             // 0 = mur vertical, 1 = mur horizontal
-}   t_ray;
+	double	cameraX;
+	double	rayDirX;
+	double	rayDirY;
+	int		mapX;
+	int		mapY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	int		stepX;
+	int		stepY;
+	int		hit;
+	int		side;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
+}	t_ray;
 
 
 // hooks
@@ -158,6 +159,7 @@ void	turn_left(t_data *data);
 void	turn_right(t_data *data);
 void	translate_left(t_data *data);
 void	translate_right(t_data *data);
+void	handle_run_key(t_data *data);
 
 // parsing
 int		check_input(t_data *data, char *filename);
@@ -187,10 +189,15 @@ void	debug_print_data(t_data *data);
 
 // Raycasting
 void	render_map2d(t_data *data, int tile_size);
-int		update(void *param);
+int		update(t_data *data);
 void    render_background(t_data *data, int x, int y);
 int		create_rgb(int r, int g, int b);
 void    put_pixel(t_my_img *img, int x, int y, int color);
+void	render_3d_scene(t_data *data);
+void	init_ray(t_ray *ray, t_data *data, int x);
+void    perform_dda(t_ray *ray, t_data *data);
+void    compute_wall(t_ray *ray, t_data *data);
+void    draw_column(t_ray *ray, t_data *data, int x);
 
 
 #endif

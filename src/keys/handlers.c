@@ -15,33 +15,25 @@
 
 void	handle_move_keys(t_data *data)
 {
+	handle_run_key(data);
 	if (data->keys.forward)
 		move_forward(data);
 	if (data->keys.backward)
 		move_backward(data);
-	if (data->keys.left && !data->keys.strafe)
+	if (data->keys.left)
 		turn_left(data);
-	if (data->keys.right && !data->keys.strafe)
+	if (data->keys.right)
 		turn_right(data);
-}
-
-void	handle_strafe_keys(t_data *data)
-{
-	if (data->keys.strafe && data->keys.left)
-		translate_left(data);
-	if (data->keys.strafe && data->keys.right)
+	if (data->keys.strafe_right)
 		translate_right(data);
+	if (data->keys.strafe_left)
+		translate_left(data);
 }
 
-// gère la vitesse de déplacement et de rotation
 void	handle_run_key(t_data *data)
 {
-	if (data->keys.run)
-	{
-
-	}
-	else
-	{
-
-	}
+    if (data->keys.run)
+		data->player->movement_speed = data->player->base_speed * 3;
+    else
+		data->player->movement_speed = data->player->base_speed;
 }

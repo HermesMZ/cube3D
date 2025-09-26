@@ -30,9 +30,11 @@ int	key_press(int keysym, t_data *data)
 		data->keys.left = true;
 	if (keysym == 100)
 		data->keys.right = true;
+	if (keysym == 97)
+		data->keys.strafe_right = true;
+	if (keysym == 101)
+		data->keys.strafe_left = true;
 	if (keysym == 65505)
-		data->keys.strafe = true;
-	if (keysym == 65507)
 		data->keys.run = true;
 	return (0);
 }
@@ -40,27 +42,31 @@ int	key_press(int keysym, t_data *data)
 int	key_release(int keysym, t_data *data)
 {
 	if (keysym == 65289)
-		data->keys.minimap = 0;
+		data->keys.minimap = false;
 	if (keysym == 122)
-		data->keys.forward = 0;
+		data->keys.forward = false;
 	if (keysym == 115)
-		data->keys.backward = 0;
+		data->keys.backward = false;
 	if (keysym == 113)
-		data->keys.left = 0;
+		data->keys.left = false;
 	if (keysym == 100)
-		data->keys.right = 0;
+		data->keys.right = false;
+	if (keysym == 97)
+		data->keys.strafe_right = false;
+	if (keysym == 101)
+		data->keys.strafe_left = false;
 	if (keysym == 65505)
-		data->keys.strafe = 0;
-	if (keysym == 65507)
-		data->keys.run = 0;
+		data->keys.run = false;
 	return (0);
 }
 
-int	update(void *param)
+int	update(t_data *data)
 {
-	t_data *data = (t_data *)param;
-
-	handle_move_keys(data);
-	render_map2d(data, 23);
-	return (0);
+    handle_move_keys(data);
+    render_background(data, 0, 0);
+    render_3d_scene(data);
+    mlx_put_image_to_window(data->mlx->mlx_ptr,
+							data->mlx->win_ptr,
+							data->mlx->img->img, 0, 0);
+    return (0);
 }

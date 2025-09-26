@@ -35,6 +35,7 @@ int	init_player(t_data *data)
 				data->player->start_position[1] = j;
 				data->player->movement_speed = 0.05;
 				data->player->rotation_speed = 0.05;
+				data->player->base_speed = 0.05;
 				data->player->y = i + 0.5;
 				data->player->x = j + 0.5;
 				set_player_attribute(data);
@@ -48,10 +49,10 @@ int	init_player(t_data *data)
 void	set_player_attribute(t_data *data)
 {
 	if (data->player->direction == 'N') {
-		data->player->dirX = 0;
-		data->player->dirY = -1;
-		data->player->planeX = 0.66;
-		data->player->planeY = 0;
+		data->player->dirX = 0;  // si le joueur regarde au nord l'axe horizontale (x) ne change pas 
+		data->player->dirY = -1; // par contre l'axe vertical change, on travail dans une plage de [-1, 1]
+		data->player->planeX = 0.66; // plane correspond a l'angle de vue (FOV), 0.66 permet au mur d'étre carré
+		data->player->planeY = 0; // on applique toute ces valeurs en fonction de la ou on regarde
 	}
 	else if (data->player->direction == 'S') {
 		data->player->dirX = 0;
