@@ -64,6 +64,7 @@ void    init_ray(t_ray *ray, t_data *data, int x)
 		ray->sideDistY = (ray->mapY + 1.0 - data->player->y) * ray->deltaDistY;
 	}
 	ray->hit = 0;
+	ray->wall_rgb = 0x000000;
 }
 
 void    perform_dda(t_ray *ray, t_data *data)
@@ -93,10 +94,22 @@ void    perform_dda(t_ray *ray, t_data *data)
 void    compute_wall(t_ray *ray, t_data *data)
 {
 	if (ray->side == 0) // si le mur touché est sur l'axe vertical
+	{
+		if (ray->rayDirX > 0)
+        	ray->wall_rgb = 0xFF0000;
+		else
+        	ray->wall_rgb = 0x00FF00;
 		ray->perpWallDist = (ray->mapX - data->player->x + (1 - ray->stepX) / 2) / ray->rayDirX;
-						//  calcule la distance perpendiculaire entre le player et le mur (permet de corriger l'effet fisheye)
+		//  calcule la distance perpendiculaire entre le player et le mur (permet de corriger l'effet fisheye)
+	}
 	else
+	{
+		if (ray->rayDirY > 0)
+        	ray->wall_rgb = 0x0000FF;
+		else
+        	ray->wall_rgb = 0xFFFF00;
 		ray->perpWallDist = (ray->mapY - data->player->y + (1 - ray->stepY) / 2) / ray->rayDirY;
+	}
 	ray->lineHeight = (int)(data->mlx->height / ray->perpWallDist);
 	// permet de calculer la hauteur du mur en fonction de ça distance
 	ray->drawStart = -ray->lineHeight / 2 + data->mlx->height / 2;
@@ -116,7 +129,6 @@ void    draw_column(t_ray *ray, t_data *data, int x)
 	int	y;
 	int	ceiling_rgb;
 	int	floor_rgb;
-	int wall_rgb;
 
 	floor_rgb = create_rgb(data->textures->floor_color->r,
 								 data->textures->floor_color->g,
@@ -124,7 +136,6 @@ void    draw_column(t_ray *ray, t_data *data, int x)
 	ceiling_rgb = create_rgb(data->textures->ceiling_color->r,
 								 data->textures->ceiling_color->g,
 								 data->textures->ceiling_color->b);
-	wall_rgb    = 0xD3D3D3;
 	y = 0;
 	while (y < ray->drawStart)
 	{
@@ -133,7 +144,7 @@ void    draw_column(t_ray *ray, t_data *data, int x)
 	}
 	while (y <= ray->drawEnd)
 	{
-		put_pixel(data->mlx->img, x, y, wall_rgb);
+		put_pixel(data->mlx->img, x, y, ray->wall_rgb);
 		y++;
 	}
 	while (y < data->mlx->height)

@@ -142,6 +142,7 @@ typedef struct s_ray
 	int		lineHeight;
 	int		drawStart;
 	int		drawEnd;
+	int		wall_rgb;
 }	t_ray;
 
 
