@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:11:18 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 23:58:44 by zoum             ###   ########.fr       */
+/*   Updated: 2025/09/30 17:02:42 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,26 +82,26 @@ void	clean_data(t_data *data)
 	ft_my_free_all(data->allocator);
 }
 
-int end_display(t_data *data)
+int	end_display(t_data *data)
 {
-    if (!data)
-        exit(0);
-    if (data->mlx)
-    {
-        if (data->mlx->img && data->mlx->img->img)
-            mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img->img);
-        if (data->mlx->win_ptr)
-            mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
-        if (data->mlx->mlx_ptr)
-        {
-            mlx_destroy_display(data->mlx->mlx_ptr);
-            free(data->mlx->mlx_ptr);
-        }
-        if (data->mlx->img)
-            ft_my_free(data->allocator, data->mlx->img);
-        ft_my_free(data->allocator, data->mlx);
-    }
-    clean_data(data);
-    exit(0);
-    return (0);
+	if (!data)
+		exit(0);
+	if (data->mlx)
+	{
+		if (data->mlx->img && data->mlx->img->img)
+			mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img->img);
+		if (data->mlx->win_ptr)
+			mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
+		if (data->mlx->mlx_ptr)
+		{
+			mlx_destroy_display(data->mlx->mlx_ptr);
+			free(data->mlx->mlx_ptr);
+		}
+		if (data->mlx->img)
+			ft_my_free(data->allocator, data->mlx->img);
+		ft_my_free(data->allocator, data->mlx);
+	}
+	clean_data(data);
+	exit(0);
+	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 23:53:13 by zoum             ###   ########.fr       */
+/*   Updated: 2025/09/30 17:14:03 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	init_mlx(t_data *data)
 	if (!data->mlx)
 		return (0);
 	*data->mlx = (t_mlx_data){0};
-	data->mlx->width  = 800;
+	data->mlx->width = 800;
 	data->mlx->height = 600;
 	data->mlx->mlx_ptr = mlx_init();
 	if (!data->mlx->mlx_ptr)
@@ -35,9 +35,9 @@ int	init_mlx(t_data *data)
 	if (!data->mlx->img->img)
 		return (0);
 	data->mlx->img->addr = mlx_get_data_addr(data->mlx->img->img,
-											&data->mlx->img->bits_per_pixel,
-											&data->mlx->img->line_len,
-											&data->mlx->img->endian);
+			&data->mlx->img->bits_per_pixel,
+			&data->mlx->img->line_len,
+			&data->mlx->img->endian);
 	return (1);
 }
 

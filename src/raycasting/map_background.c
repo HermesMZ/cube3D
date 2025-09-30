@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_background.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/30 16:54:30 by edobele           #+#    #+#             */
+/*   Updated: 2025/09/30 16:55:34 by mzimeris         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 void	put_pixel(t_my_img *img, int x, int y, int color)
@@ -19,11 +31,11 @@ void	render_background(t_data *data, int x, int y)
 	int	floor_rgb;
 
 	ceiling_rgb = create_rgb(data->textures->ceiling_color->r,
-							data->textures->ceiling_color->g,
-							data->textures->ceiling_color->b);
+			data->textures->ceiling_color->g,
+			data->textures->ceiling_color->b);
 	floor_rgb = create_rgb(data->textures->floor_color->r,
-							data->textures->floor_color->g,
-							data->textures->floor_color->b);
+			data->textures->floor_color->g,
+			data->textures->floor_color->b);
 	while (y < data->mlx->height)
 	{
 		x = 0;
@@ -38,6 +50,6 @@ void	render_background(t_data *data, int x, int y)
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx->mlx_ptr,
-							data->mlx->win_ptr,
-							data->mlx->img->img, 0, 0);
+		data->mlx->win_ptr,
+		data->mlx->img->img, 0, 0);
 }

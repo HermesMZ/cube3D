@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:11:07 by zoum              #+#    #+#             */
-/*   Updated: 2025/09/17 23:19:08 by zoum             ###   ########.fr       */
+/*   Updated: 2025/09/30 17:14:31 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,11 @@ int	key_release(int keysym, t_data *data)
 
 int	update(t_data *data)
 {
-    handle_move_keys(data);
-    render_background(data, 0, 0);
-    render_3d_scene(data);
-    mlx_put_image_to_window(data->mlx->mlx_ptr,
-							data->mlx->win_ptr,
-							data->mlx->img->img, 0, 0);
-    return (0);
+	handle_move_keys(data);
+	render_background(data, 0, 0);
+	render_3d_scene(data);
+	mlx_put_image_to_window(data->mlx->mlx_ptr,
+		data->mlx->win_ptr,
+		data->mlx->img->img, 0, 0);
+	return (0);
 }
