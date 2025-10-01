@@ -105,9 +105,9 @@ void    compute_wall(t_ray *ray, t_data *data)
 	else
 	{
 		if (ray->rayDirY > 0)
-        	ray->wall_rgb = 0x0000FF;
+			ray->wall_rgb = 0x0000FF;
 		else
-        	ray->wall_rgb = 0xFFFF00;
+			ray->wall_rgb = 0xFFFF00;
 		ray->perpWallDist = (ray->mapY - data->player->y + (1 - ray->stepY) / 2) / ray->rayDirY;
 	}
 	ray->lineHeight = (int)(data->mlx->height / ray->perpWallDist);
@@ -122,34 +122,4 @@ void    compute_wall(t_ray *ray, t_data *data)
 	if (ray->drawEnd >= data->mlx->height)
 		ray->drawEnd = data->mlx->height - 1;
 	// s'il dépasse la taille de la fenêtre on le met sur le dernier pixel valide (si 400px drawEnd = 400 - 1)
-}
-
-void    draw_column(t_ray *ray, t_data *data, int x)
-{
-	int	y;
-	int	ceiling_rgb;
-	int	floor_rgb;
-
-	floor_rgb = create_rgb(data->textures->floor_color->r,
-								 data->textures->floor_color->g,
-								 data->textures->floor_color->b);
-	ceiling_rgb = create_rgb(data->textures->ceiling_color->r,
-								 data->textures->ceiling_color->g,
-								 data->textures->ceiling_color->b);
-	y = 0;
-	while (y < ray->drawStart)
-	{
-		put_pixel(data->mlx->img, x, y, ceiling_rgb);
-		y++;
-	}
-	while (y <= ray->drawEnd)
-	{
-		put_pixel(data->mlx->img, x, y, ray->wall_rgb);
-		y++;
-	}
-	while (y < data->mlx->height)
-	{
-		put_pixel(data->mlx->img, x, y, floor_rgb);
-		y++;
-	}
 }

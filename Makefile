@@ -52,6 +52,7 @@ RAYCASTION_SRC = \
 	map_background.c \
 	render_2D.c \
 	raycasting.c \
+	draw_column.c \
 
 
 SRC_ALL = \

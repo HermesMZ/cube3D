@@ -29,6 +29,8 @@ int	main(int argc, char **argv)
 		return (ft_printf("Error - Failed to initialize data\n"), 1);
 	if (!check_input(data, argv[1]))
 		return (1);
+	if (!load_all_textures(data))
+    	return (ft_printf("failed to load textures\n", 1));
 	debug_print_data(data);
 	mlx_loop_hook(data->mlx->mlx_ptr, update, data);
 	mlx_hook(data->mlx->win_ptr, KeyPress, KeyPressMask, key_press, data);

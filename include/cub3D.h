@@ -61,15 +61,30 @@ typedef struct s_color
 	int	b;
 }				t_color;
 
+typedef struct s_my_img
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+}	t_my_img;
+
 typedef struct s_textures
 {
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
-	t_color	*floor_color;
-	t_color	*ceiling_color;
-}				t_textures;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	t_color		*floor_color;
+	t_color		*ceiling_color;
+	t_my_img	north_img;
+	t_my_img	south_img;
+	t_my_img	west_img;
+	t_my_img	east_img;
+}	t_textures;
 
 typedef struct s_player
 {
@@ -92,15 +107,6 @@ typedef struct s_map
 	int			height;
 	int			width;
 }				t_map;
-
-typedef struct s_my_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_len;
-	int		endian;
-}				t_my_img;
 
 typedef struct s_mlx_data
 {
@@ -173,6 +179,8 @@ int		parse_map_from_file(t_data **data, char *filename);
 int		mandatory_ids_present(t_id *ids);
 int		map_check(t_map *map);
 void	set_player_attribute(t_data *data);
+int		load_all_textures(t_data *data);
+int		load_texture(t_mlx_data *mlx, t_my_img *tex, char *path);
 
 // init
 int		init_player(t_data *data);
@@ -181,6 +189,7 @@ int		init_player(t_data *data);
 int		init_data(t_data **data, t_lalloc *allocator);
 void	clean_data(t_data *data);
 int		end_display(t_data *data);
+void	clean_textures_bis(t_data *data, t_textures *textures);
 
 // debug
 void	debug_print_map(t_map *map);
@@ -198,7 +207,7 @@ void	render_3d_scene(t_data *data);
 void	init_ray(t_ray *ray, t_data *data, int x);
 void    perform_dda(t_ray *ray, t_data *data);
 void    compute_wall(t_ray *ray, t_data *data);
-void    draw_column(t_ray *ray, t_data *data, int x);
+void	draw_column(t_ray *ray, t_data *data, int x);
 
 
 #endif

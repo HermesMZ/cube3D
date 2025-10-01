@@ -12,7 +12,6 @@
 
 #include "cub3D.h"
 
-// gerer la resolution de la fenetre
 int	init_mlx(t_data *data)
 {
 	data->mlx = ft_my_malloc(data->allocator, sizeof(t_mlx_data));
@@ -82,5 +81,35 @@ int	init_data(t_data **data, t_lalloc *allocator)
 	*(*data)->player = (t_player){0};
 	if (!init_mlx(*data))
 		return (clean_data(*data), 0);
+	return (1);
+}
+
+int	load_texture(t_mlx_data *mlx, t_my_img *tex, char *path)
+{
+	tex->img = mlx_xpm_file_to_image(mlx->mlx_ptr, path,
+			&tex->width, &tex->height);
+	if (!tex->img)
+		return (0);
+	tex->addr = mlx_get_data_addr(tex->img,
+			&tex->bits_per_pixel,
+			&tex->line_len,
+			&tex->endian);
+	return (1);
+}
+
+int	load_all_textures(t_data *data)
+{
+	if (!load_texture(data->mlx, &data->textures->north_img,
+			data->textures->north_texture))
+		return (0);
+	if (!load_texture(data->mlx, &data->textures->south_img,
+			data->textures->south_texture))
+		return (0);
+	if (!load_texture(data->mlx, &data->textures->west_img,
+			data->textures->west_texture))
+		return (0);
+	if (!load_texture(data->mlx, &data->textures->east_img,
+			data->textures->east_texture))
+		return (0);
 	return (1);
 }

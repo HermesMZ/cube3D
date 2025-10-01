@@ -34,7 +34,7 @@ int	init_player(t_data *data)
 				data->player->start_position[0] = i;
 				data->player->start_position[1] = j;
 				data->player->movement_speed = 0.05;
-				data->player->rotation_speed = 0.05;
+				data->player->rotation_speed = 0.1;
 				data->player->base_speed = 0.05;
 				data->player->y = i + 0.5;
 				data->player->x = j + 0.5;
