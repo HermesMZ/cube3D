@@ -25,19 +25,6 @@
 # include <stdbool.h>
 # include <float.h>
 
-# define AZERTY 0
-
-# if (AZERTY)
-#  define FORWARD 122
-#  define TURN_LEFT 113
-#  define STRAFE_LEFT 97
-# else
-#  define FORWARD 119
-#  define TURN_LEFT 97
-#  define STRAFE_LEFT 113
-# endif
-
-
 typedef struct s_id
 {
 	char			*key;
