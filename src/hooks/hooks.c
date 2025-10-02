@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:11:07 by zoum              #+#    #+#             */
-/*   Updated: 2025/09/17 23:19:08 by zoum             ###   ########.fr       */
+/*   Updated: 2025/10/02 13:55:15 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	key_press(int keysym, t_data *data)
 {
+	printf("Key pressed: %d\n", keysym);
 	if (keysym == XK_Escape)
 		end_display(data);
 	if (keysym == 32)
@@ -22,15 +23,15 @@ int	key_press(int keysym, t_data *data)
 		handle_open_key(data);
 	if (keysym == 65289)
 		data->keys.minimap = true;
-	if (keysym == 122)
+	if (keysym == FORWARD)
 		data->keys.forward = true;
 	if (keysym == 115)
 		data->keys.backward = true;
-	if (keysym == 113)
+	if (keysym == TURN_LEFT)
 		data->keys.left = true;
 	if (keysym == 100)
 		data->keys.right = true;
-	if (keysym == 97)
+	if (keysym == STRAFE_LEFT)
 		data->keys.strafe_right = true;
 	if (keysym == 101)
 		data->keys.strafe_left = true;
@@ -43,15 +44,15 @@ int	key_release(int keysym, t_data *data)
 {
 	if (keysym == 65289)
 		data->keys.minimap = false;
-	if (keysym == 122)
+	if (keysym == FORWARD)
 		data->keys.forward = false;
 	if (keysym == 115)
 		data->keys.backward = false;
-	if (keysym == 113)
+	if (keysym == TURN_LEFT)
 		data->keys.left = false;
 	if (keysym == 100)
 		data->keys.right = false;
-	if (keysym == 97)
+	if (keysym == STRAFE_LEFT)
 		data->keys.strafe_right = false;
 	if (keysym == 101)
 		data->keys.strafe_left = false;
