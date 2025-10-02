@@ -25,7 +25,7 @@
 # include <stdbool.h>
 # include <float.h>
 
-# define AZERTY 1
+# define AZERTY 0
 
 # if (AZERTY)
 #  define FORWARD 122

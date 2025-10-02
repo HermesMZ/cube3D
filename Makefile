@@ -67,7 +67,7 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o, $(SRC_ALL))
 
 all: $(LIBFT) $(LIBMLX) $(NAME) $(INCLUDES_DIR)/cub3D.h
 
-$(NAME): $(OBJS) $(LIBFT) $(LIBMLX)
+$(NAME): $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDES_DIR)/cub3D.h
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(MLX_LIBS) $(X_LIBS) -no-pie -o $(NAME)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

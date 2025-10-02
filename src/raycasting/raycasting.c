@@ -17,6 +17,7 @@ void    render_3d_scene(t_data *data)
 	mlx_put_image_to_window(data->mlx->mlx_ptr,
 							data->mlx->win_ptr,
 							data->mlx->img->img, 0, 0);
+	render_map2d(data, 8); // affichage de la map 2D en haut a gauche
 }
 
 void    init_ray(t_ray *ray, t_data *data, int x)

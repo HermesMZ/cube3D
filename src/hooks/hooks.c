@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:11:07 by zoum              #+#    #+#             */
-/*   Updated: 2025/10/02 13:55:15 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/02 14:10:02 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	key_press(int keysym, t_data *data)
 		data->keys.left = true;
 	if (keysym == 100)
 		data->keys.right = true;
-	if (keysym == STRAFE_LEFT)
-		data->keys.strafe_right = true;
 	if (keysym == 101)
+		data->keys.strafe_right = true;
+	if (keysym == STRAFE_LEFT)
 		data->keys.strafe_left = true;
 	if (keysym == 65505)
 		data->keys.run = true;
@@ -52,9 +52,9 @@ int	key_release(int keysym, t_data *data)
 		data->keys.left = false;
 	if (keysym == 100)
 		data->keys.right = false;
-	if (keysym == STRAFE_LEFT)
-		data->keys.strafe_right = false;
 	if (keysym == 101)
+		data->keys.strafe_right = false;
+	if (keysym == STRAFE_LEFT)
 		data->keys.strafe_left = false;
 	if (keysym == 65505)
 		data->keys.run = false;
