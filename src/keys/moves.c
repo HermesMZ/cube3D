@@ -6,11 +6,40 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:43:36 by zoum              #+#    #+#             */
-/*   Updated: 2025/10/03 15:03:50 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 16:49:56 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	mouse_move(int x, int y, void *param)
+{
+	t_data	*data;
+	int		xoffset;
+
+	data = (t_data *)param;
+	if (data->player->first_mouse)
+	{
+		data->player->last_mouse_x = x;
+		data->player->last_mouse_y = y;
+		data->player->first_mouse = false;
+		return (0);
+	}
+	xoffset = x - data->player->last_mouse_x;
+	data->player->last_mouse_x = x;
+	data->player->last_mouse_y = y;
+	if (xoffset > data->player->mouse_sensitivity)
+		turn_right(data);
+	else if (xoffset < -data->player->mouse_sensitivity)
+		turn_left(data);
+	if (x <= 10 || x >= W - 10)
+	{
+		mlx_mouse_move(data->mlx->mlx_ptr, data->mlx->win_ptr, W / 2, H / 2);
+		data->player->last_mouse_x = W / 2;
+		data->player->last_mouse_y = H / 2;
+	}
+	return (0);
+}
 
 void	move_forward(t_data *data)
 {

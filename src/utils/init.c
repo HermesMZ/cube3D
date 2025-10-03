@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/03 14:05:56 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 16:49:56 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	init_mlx(t_data *data)
 	if (!data->mlx)
 		return (0);
 	*data->mlx = (t_mlx_data){0};
-	data->mlx->width = WIDTH;
-	data->mlx->height = HEIGHT;
+	data->mlx->width = W;
+	data->mlx->height = H;
 	data->mlx->mlx_ptr = mlx_init();
 	if (!data->mlx->mlx_ptr)
 		return (0);

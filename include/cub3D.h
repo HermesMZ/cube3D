@@ -25,8 +25,8 @@
 # include <stdbool.h>
 # include <float.h>
 
-# define WIDTH 800
-# define HEIGHT 600
+# define W 800
+# define H 600
 
 typedef struct s_id
 {
@@ -102,6 +102,10 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		mouse_sensitivity;
+	int			last_mouse_x;
+	int			last_mouse_y;
+	bool		first_mouse;
 }				t_player;
 
 typedef struct s_map
@@ -169,6 +173,7 @@ void		turn_right(t_data *data);
 void		translate_left(t_data *data);
 void		translate_right(t_data *data);
 void		handle_run_key(t_data *data);
+int			mouse_move(int x, int y, void *param);
 
 // parsing
 int			check_input(t_data *data, char *filename);
