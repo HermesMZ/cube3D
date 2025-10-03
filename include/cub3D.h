@@ -98,10 +98,10 @@ typedef struct s_player
 	double		movement_speed;
 	double		rotation_speed;
 	double		base_speed;
-	double 		dirX;
-	double		dirY;
-	double		planeX;
-	double		planeY;
+	double		dir_x;
+	double		dir_y;
+	double		plane_x;
+	double		plane_y;
 }				t_player;
 
 typedef struct s_map
@@ -134,26 +134,25 @@ typedef struct s_data
 
 typedef struct s_ray
 {
-	double	cameraX;
-	double	rayDirX;
-	double	rayDirY;
-	int		mapX;
-	int		mapY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	int		stepX;
-	int		stepY;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	int		map_x;
+	int		map_y;
+	double	side_dist_x;
+	double	side_dist_y;
+	double	delta_dist_x;
+	double	delta_dist_y;
+	double	perp_wall_dist;
+	int		step_x;
+	int		step_y;
 	int		hit;
 	int		side;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
 	int		wall_rgb;
 }	t_ray;
-
 
 // hooks
 int		key_press(int keysym, t_data *data);
@@ -181,7 +180,6 @@ int		count_map_dimensions(t_data *data, char *line, int fd);
 int		parse_map_from_file(t_data **data, char *filename);
 int		mandatory_ids_present(t_id *ids);
 int		map_check(t_map *map);
-void	set_player_attribute(t_data *data);
 int		load_all_textures(t_data *data);
 int		load_texture(t_mlx_data *mlx, t_my_img *tex, char *path);
 
@@ -203,14 +201,13 @@ void	debug_print_data(t_data *data);
 // Raycasting
 void	render_map2d(t_data *data, int tile_size);
 int		update(t_data *data);
-void    render_background(t_data *data, int x, int y);
+void	render_background(t_data *data, int x, int y);
 int		create_rgb(int r, int g, int b);
-void    put_pixel(t_my_img *img, int x, int y, int color);
+void	put_pixel(t_my_img *img, int x, int y, int color);
 void	render_3d_scene(t_data *data);
 void	init_ray(t_ray *ray, t_data *data, int x);
-void    perform_dda(t_ray *ray, t_data *data);
-void    compute_wall(t_ray *ray, t_data *data);
+void	perform_dda(t_ray *ray, t_data *data);
+void	compute_wall(t_ray *ray, t_data *data);
 void	draw_column(t_ray *ray, t_data *data, int x);
-
 
 #endif

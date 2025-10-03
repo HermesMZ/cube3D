@@ -3,70 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:43:36 by zoum              #+#    #+#             */
-/*   Updated: 2025/09/17 23:40:58 by zoum             ###   ########.fr       */
+/*   Updated: 2025/10/03 15:03:50 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-
 void	move_forward(t_data *data)
 {
-	double newX;
-	double newY;
+	double	new_x;
+	double	new_y;
 
-	newX = data->player->x + data->player->dirX * data->player->movement_speed;
-	newY = data->player->y + data->player->dirY * data->player->movement_speed;
-	if (data->map->grid[(int)newY][(int)newX] != '1')
+	new_x = data->player->x + data->player->dir_x
+		* data->player->movement_speed;
+	new_y = data->player->y + data->player->dir_y
+		* data->player->movement_speed;
+	if (data->map->grid[(int)new_y][(int)new_x] != '1')
 	{
-		data->player->x = newX;
-		data->player->y = newY;
+		data->player->x = new_x;
+		data->player->y = new_y;
 	}
 }
 
 void	move_backward(t_data *data)
 {
-	double newX;
-	double newY;
+	double	new_x;
+	double	new_y;
 
-	newX = data->player->x - data->player->dirX * data->player->movement_speed;
-	newY = data->player->y - data->player->dirY * data->player->movement_speed;
-	if (data->map->grid[(int)newY][(int)newX] != '1')
+	new_x = data->player->x - data->player->dir_x
+		* data->player->movement_speed;
+	new_y = data->player->y - data->player->dir_y
+		* data->player->movement_speed;
+	if (data->map->grid[(int)new_y][(int)new_x] != '1')
 	{
-		data->player->x = newX;
-		data->player->y = newY;
+		data->player->x = new_x;
+		data->player->y = new_y;
 	}
 }
 
 void	turn_right(t_data *data)
 {
-	double	oldDirX;
-	double	oldPlaneX;
-	double	rotSpeed;
+	double	old_dir_x;
+	double	old_plane_x;
+	double	rot_speed;
 
-	oldDirX = data->player->dirX;
-	oldPlaneX = data->player->planeX;
-	rotSpeed = data->player->rotation_speed;
-	data->player->dirX = data->player->dirX * cos(rotSpeed) - data->player->dirY * sin(rotSpeed);
-	data->player->dirY = oldDirX * sin(rotSpeed) + data->player->dirY * cos(rotSpeed);
-	data->player->planeX = data->player->planeX * cos(rotSpeed) - data->player->planeY * sin(rotSpeed);
-	data->player->planeY = oldPlaneX * sin(rotSpeed) + data->player->planeY * cos(rotSpeed);
+	old_dir_x = data->player->dir_x;
+	old_plane_x = data->player->plane_x;
+	rot_speed = data->player->rotation_speed;
+	data->player->dir_x = data->player->dir_x * cos(rot_speed)
+		- data->player->dir_y * sin(rot_speed);
+	data->player->dir_y = old_dir_x * sin(rot_speed)
+		+ data->player->dir_y * cos(rot_speed);
+	data->player->plane_x = data->player->plane_x * cos(rot_speed)
+		- data->player->plane_y * sin(rot_speed);
+	data->player->plane_y = old_plane_x * sin(rot_speed)
+		+ data->player->plane_y * cos(rot_speed);
 }
 
 void	turn_left(t_data *data)
 {
-	double	oldDirX;
-	double	oldPlaneX;
-	double	rotSpeed;
+	double	old_dir_x;
+	double	old_plane_x;
+	double	rot_speed;
 
-	oldDirX = data->player->dirX;
-	oldPlaneX = data->player->planeX;
-	rotSpeed = data->player->rotation_speed;
-	data->player->dirX = data->player->dirX * cos(-rotSpeed) - data->player->dirY * sin(-rotSpeed);
-	data->player->dirY = oldDirX * sin(-rotSpeed) + data->player->dirY * cos(-rotSpeed);
-	data->player->planeX = data->player->planeX * cos(-rotSpeed) - data->player->planeY * sin(-rotSpeed);
-	data->player->planeY = oldPlaneX * sin(-rotSpeed) + data->player->planeY * cos(-rotSpeed);
+	old_dir_x = data->player->dir_x;
+	old_plane_x = data->player->plane_x;
+	rot_speed = data->player->rotation_speed;
+	data->player->dir_x = data->player->dir_x * cos(-rot_speed)
+		- data->player->dir_y * sin(-rot_speed);
+	data->player->dir_y = old_dir_x * sin(-rot_speed)
+		+ data->player->dir_y * cos(-rot_speed);
+	data->player->plane_x = data->player->plane_x * cos(-rot_speed)
+		- data->player->plane_y * sin(-rot_speed);
+	data->player->plane_y = old_plane_x * sin(-rot_speed)
+		+ data->player->plane_y * cos(-rot_speed);
 }
