@@ -54,6 +54,7 @@ RAYCASTION_SRC = \
 	render_2D.c \
 	raycasting.c \
 	draw_column.c \
+	init_ray.c \
 
 
 SRC_ALL = \

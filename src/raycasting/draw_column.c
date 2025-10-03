@@ -12,7 +12,7 @@
 
 #include "cub3D.h"
 
-static t_my_img	*select_texture(t_ray *ray, t_data *data)
+t_my_img	*select_texture(t_ray *ray, t_data *data)
 {
 	if (ray->side == 0)
 	{
@@ -30,7 +30,7 @@ static t_my_img	*select_texture(t_ray *ray, t_data *data)
 	}
 }
 
-static int	calculate_tex_x(t_ray *ray, t_data *data, t_my_img *tex)
+int	calculate_tex_x(t_ray *ray, t_data *data, t_my_img *tex)
 {
 	double	wall_x;
 	int		tex_x;
@@ -47,7 +47,7 @@ static int	calculate_tex_x(t_ray *ray, t_data *data, t_my_img *tex)
 	return (tex_x);
 }
 
-static void	draw_ceiling(t_data *data, t_ray *ray, int x)
+void	draw_ceiling(t_data *data, t_ray *ray, int x)
 {
 	int	y;
 	int	ceiling_rgb;
@@ -63,14 +63,13 @@ static void	draw_ceiling(t_data *data, t_ray *ray, int x)
 	}
 }
 
-static void	draw_wall(t_data *data, t_ray *ray, int x, t_my_img *tex)
+void	draw_wall(t_data *data, t_ray *ray, int x, t_my_img *tex)
 {
 	int		y;
 	int		tex_x;
 	int		tex_y;
 	double	tex_pos;
 	double	step;
-	int		color;
 
 	tex_x = calculate_tex_x(ray, data, tex);
 	step = (double)tex->height / (double)ray->line_height;
@@ -82,15 +81,14 @@ static void	draw_wall(t_data *data, t_ray *ray, int x, t_my_img *tex)
 		tex_y = (int)tex_pos;
 		if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		color = *(int *)(tex->addr + (tex_y * tex->line_len
-					+ tex_x * (tex->bits_per_pixel / 8)));
-		put_pixel(data->mlx->img, x, y, color);
+		put_pixel(data->mlx->img, x, y, *(int *)(tex->addr + (tex_y
+					* tex->line_len + tex_x * (tex->bits_per_pixel / 8))));
 		tex_pos += step;
 		y++;
 	}
 }
 
-static void	draw_floor(t_data *data, t_ray *ray, int x)
+void	draw_floor(t_data *data, t_ray *ray, int x)
 {
 	int	y;
 	int	floor_rgb;
@@ -104,14 +102,4 @@ static void	draw_floor(t_data *data, t_ray *ray, int x)
 		put_pixel(data->mlx->img, x, y, floor_rgb);
 		y++;
 	}
-}
-
-void	draw_column(t_ray *ray, t_data *data, int x)
-{
-	t_my_img	*tex;
-
-	draw_ceiling(data, ray, x);
-	tex = select_texture(ray, data);
-	draw_wall(data, ray, x, tex);
-	draw_floor(data, ray, x);
 }

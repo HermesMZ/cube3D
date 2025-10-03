@@ -155,59 +155,64 @@ typedef struct s_ray
 }	t_ray;
 
 // hooks
-int		key_press(int keysym, t_data *data);
-int		key_release(int keysym, t_data *data);
+int			key_press(int keysym, t_data *data);
+int			key_release(int keysym, t_data *data);
 
 // keys
-void	handle_move_keys(t_data *data);
-void	handle_open_key(t_data *data);
-void	handle_fire_key(t_data *data);
-void	move_forward(t_data *data);
-void	move_backward(t_data *data);
-void	turn_left(t_data *data);
-void	turn_right(t_data *data);
-void	translate_left(t_data *data);
-void	translate_right(t_data *data);
-void	handle_run_key(t_data *data);
+void		handle_move_keys(t_data *data);
+void		handle_open_key(t_data *data);
+void		handle_fire_key(t_data *data);
+void		move_forward(t_data *data);
+void		move_backward(t_data *data);
+void		turn_left(t_data *data);
+void		turn_right(t_data *data);
+void		translate_left(t_data *data);
+void		translate_right(t_data *data);
+void		handle_run_key(t_data *data);
 
 // parsing
-int		check_input(t_data *data, char *filename);
-int		load_file(char *filename, t_data *data);
-int		parse_file(char *filename, t_data **data);
-int		is_map_line(char *line);
-int		find_map_start(t_data *data);
-int		count_map_dimensions(t_data *data, char *line, int fd);
-int		parse_map_from_file(t_data **data, char *filename);
-int		mandatory_ids_present(t_id *ids);
-int		map_check(t_map *map);
-int		load_all_textures(t_data *data);
-int		load_texture(t_mlx_data *mlx, t_my_img *tex, char *path);
+int			check_input(t_data *data, char *filename);
+int			load_file(char *filename, t_data *data);
+int			parse_file(char *filename, t_data **data);
+int			is_map_line(char *line);
+int			find_map_start(t_data *data);
+int			count_map_dimensions(t_data *data, char *line, int fd);
+int			parse_map_from_file(t_data **data, char *filename);
+int			mandatory_ids_present(t_id *ids);
+int			map_check(t_map *map);
+int			load_all_textures(t_data *data);
+int			load_texture(t_mlx_data *mlx, t_my_img *tex, char *path);
 
 // init
-int		init_player(t_data *data);
+int			init_player(t_data *data);
 
 // cleanup
-int		init_data(t_data **data, t_lalloc *allocator);
-void	clean_data(t_data *data);
-int		end_display(t_data *data);
-void	clean_textures_bis(t_data *data, t_textures *textures);
+int			init_data(t_data **data, t_lalloc *allocator);
+void		clean_data(t_data *data);
+int			end_display(t_data *data);
+void		clean_textures_bis(t_data *data, t_textures *textures);
 
 // debug
-void	debug_print_map(t_map *map);
-void	debug_print_textures(t_textures *textures);
-void	debug_print_player(t_player *player);
-void	debug_print_data(t_data *data);
+void		debug_print_map(t_map *map);
+void		debug_print_textures(t_textures *textures);
+void		debug_print_player(t_player *player);
+void		debug_print_data(t_data *data);
 
 // Raycasting
-void	render_map2d(t_data *data, int tile_size);
-int		update(t_data *data);
-void	render_background(t_data *data, int x, int y);
-int		create_rgb(int r, int g, int b);
-void	put_pixel(t_my_img *img, int x, int y, int color);
-void	render_3d_scene(t_data *data);
-void	init_ray(t_ray *ray, t_data *data, int x);
-void	perform_dda(t_ray *ray, t_data *data);
-void	compute_wall(t_ray *ray, t_data *data);
-void	draw_column(t_ray *ray, t_data *data, int x);
+void		render_map2d(t_data *data, int tile_size);
+int			update(t_data *data);
+void		render_background(t_data *data, int x, int y);
+int			create_rgb(int r, int g, int b);
+void		put_pixel(t_my_img *img, int x, int y, int color);
+void		render_3d_scene(t_data *data);
+void		init_ray(t_ray *ray, t_data *data, int x);
+void		perform_dda(t_ray *ray, t_data *data);
+void		compute_wall(t_ray *ray, t_data *data);
+void		draw_column(t_ray *ray, t_data *data, int x);
+void		draw_floor(t_data *data, t_ray *ray, int x);
+void		draw_wall(t_data *data, t_ray *ray, int x, t_my_img *tex);
+void		draw_ceiling(t_data *data, t_ray *ray, int x);
+int			calculate_tex_x(t_ray *ray, t_data *data, t_my_img *tex);
+t_my_img	*select_texture(t_ray *ray, t_data *data);
 
 #endif
