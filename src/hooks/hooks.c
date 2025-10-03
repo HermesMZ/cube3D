@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:11:07 by zoum              #+#    #+#             */
-/*   Updated: 2025/10/03 14:30:28 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 16:48:21 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,8 @@ int	key_release(int keysym, t_data *data)
 
 int	update(t_data *data)
 {
-	static int	frame_count = 0;
-
 	handle_move_keys(data);
-	if (data->keys.backward || data->keys.forward
-		|| data->keys.left || data->keys.right
-		|| data->keys.strafe_left || data->keys.strafe_right
-		|| frame_count == 0)
-	{
-		frame_count = 1;
-		render_3d_scene(data);
-	}
+	render_3d_scene(data);
 	mlx_put_image_to_window(data->mlx->mlx_ptr,
 		data->mlx->win_ptr, data->mlx->img->img, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 11:21:21 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/03 14:52:25 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 16:49:56 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ static void	set_player_attribute(t_data *data, int i, int j)
 	data->player->base_speed = 0.05;
 	data->player->y = i + 0.5;
 	data->player->x = j + 0.5;
+	data->player->mouse_sensitivity = 0.001;
+	data->player->last_mouse_x = W / 2;
+	data->player->last_mouse_y = H / 2;
+	data->player->first_mouse = true;
 }
 
 int	init_player(t_data *data)
