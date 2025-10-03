@@ -44,6 +44,7 @@ PARSING_SRC = \
 	player.c \
 
 UTILS_SRC = \
+	clean_mlx.c \
 	clean.c \
 	debug.c \
 	init.c \
