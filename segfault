@@ -44,3 +44,7 @@ Key pressed: 119
 ==1866449== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 1)
 [1]    1866449 segmentation fault (core dumped)  valgrind ./cub3D subject\ copy.cub
 ➜  cub3D git:(main) ✗ 
+
+nettoyage des images
+nettoyage en cas de fail des textures
+resize ?

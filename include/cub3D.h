@@ -25,6 +25,9 @@
 # include <stdbool.h>
 # include <float.h>
 
+# define WIDTH 800
+# define HEIGHT 600
+
 typedef struct s_id
 {
 	char			*key;

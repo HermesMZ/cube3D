@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:11:18 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 23:58:44 by zoum             ###   ########.fr       */
+/*   Updated: 2025/10/03 13:18:19 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	clean_ids(t_data *data, t_id *ids)
+static void	clean_ids(t_data *data, t_id *ids)
 {
 	t_id	*current;
 	t_id	*next;
@@ -32,7 +32,7 @@ void	clean_ids(t_data *data, t_id *ids)
 	}
 }
 
-void	clean_map(t_data *data, t_map *map)
+static void	clean_map(t_data *data, t_map *map)
 {
 	int	i;
 
@@ -48,7 +48,7 @@ void	clean_map(t_data *data, t_map *map)
 	ft_my_free(data->allocator, map);
 }
 
-void	clean_textures(t_data *data, t_textures *textures)
+static void	clean_textures(t_data *data, t_textures *textures)
 {
 	if (!textures)
 		return ;
@@ -82,26 +82,41 @@ void	clean_data(t_data *data)
 	ft_my_free_all(data->allocator);
 }
 
-int end_display(t_data *data)
+static void	destroy_texture_images(t_data *data)
 {
-    if (!data)
-        exit(0);
-    if (data->mlx)
-    {
-        if (data->mlx->img && data->mlx->img->img)
-            mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img->img);
-        if (data->mlx->win_ptr)
-            mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
-        if (data->mlx->mlx_ptr)
-        {
-            mlx_destroy_display(data->mlx->mlx_ptr);
-            free(data->mlx->mlx_ptr);
-        }
-        if (data->mlx->img)
-            ft_my_free(data->allocator, data->mlx->img);
-        ft_my_free(data->allocator, data->mlx);
-    }
-    clean_data(data);
-    exit(0);
-    return (0);
+	if (!data || !data->textures)
+		return ;
+	if (data->textures->north_img.img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->textures->north_img.img);
+	if (data->textures->south_img.img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->textures->south_img.img);
+	if (data->textures->west_img.img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->textures->west_img.img);
+	if (data->textures->east_img.img)
+		mlx_destroy_image(data->mlx->mlx_ptr, data->textures->east_img.img);
+}
+
+int	end_display(t_data *data)
+{
+	if (!data)
+		exit(0);
+	if (data->mlx)
+	{
+		destroy_texture_images(data);
+		if (data->mlx->img && data->mlx->img->img)
+			mlx_destroy_image(data->mlx->mlx_ptr, data->mlx->img->img);
+		if (data->mlx->win_ptr)
+			mlx_destroy_window(data->mlx->mlx_ptr, data->mlx->win_ptr);
+		if (data->mlx->mlx_ptr)
+		{
+			mlx_destroy_display(data->mlx->mlx_ptr);
+			free(data->mlx->mlx_ptr);
+		}
+		if (data->mlx->img)
+			ft_my_free(data->allocator, data->mlx->img);
+		ft_my_free(data->allocator, data->mlx);
+	}
+	clean_data(data);
+	exit(0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:34:25 by edobele           #+#    #+#             */
-/*   Updated: 2025/10/02 12:36:14 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/02 19:20:48 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void	draw_floor(t_data *data, t_ray *ray, int x)
 			data->textures->floor_color->g,
 			data->textures->floor_color->b);
 	y = ray->drawEnd + 1;
-	while (y < data->mlx->height)
+	while (y < data->mlx->height && y >= 0)
 	{
 		put_pixel(data->mlx->img, x, y, floor_rgb);
 		y++;

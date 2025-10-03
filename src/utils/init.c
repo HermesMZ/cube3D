@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/02 13:47:11 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 13:25:08 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,26 @@ int	init_mlx(t_data *data)
 	if (!data->mlx)
 		return (0);
 	*data->mlx = (t_mlx_data){0};
-	data->mlx->width = 800;
-	data->mlx->height = 600;
+	data->mlx->width = WIDTH;
+	data->mlx->height = HEIGHT;
 	data->mlx->mlx_ptr = mlx_init();
 	if (!data->mlx->mlx_ptr)
 		return (0);
-	data->mlx->win_ptr = mlx_new_window(data->mlx->mlx_ptr, 800, 600, "Cube3D");
+	data->mlx->win_ptr = mlx_new_window(data->mlx->mlx_ptr, data->mlx->width,
+			data->mlx->height, "Cube3D");
 	if (!data->mlx->win_ptr)
 		return (free(data->mlx), 0);
 	data->mlx->img = ft_my_malloc(data->allocator, sizeof(t_my_img));
 	if (!data->mlx->img)
 		return (0);
 	*data->mlx->img = (t_my_img){0};
-	data->mlx->img->img = mlx_new_image(data->mlx->mlx_ptr, 800, 600);
+	data->mlx->img->img = mlx_new_image(data->mlx->mlx_ptr, data->mlx->width,
+			data->mlx->height);
 	if (!data->mlx->img->img)
 		return (0);
 	data->mlx->img->addr = mlx_get_data_addr(data->mlx->img->img,
-											&data->mlx->img->bits_per_pixel,
-											&data->mlx->img->line_len,
-											&data->mlx->img->endian);
+			&data->mlx->img->bits_per_pixel, &data->mlx->img->line_len,
+			&data->mlx->img->endian);
 	return (1);
 }
 
@@ -44,10 +45,6 @@ int	init_textures(t_data *data)
 {
 	if (!data || !data->textures)
 		return (0);
-	data->textures->north_texture = NULL;
-	data->textures->south_texture = NULL;
-	data->textures->west_texture = NULL;
-	data->textures->east_texture = NULL;
 	data->textures->floor_color = ft_my_malloc(data->allocator,
 			sizeof(t_color));
 	if (!data->textures->floor_color)
@@ -69,6 +66,7 @@ int	init_data(t_data **data, t_lalloc *allocator)
 	(*data)->textures = ft_my_malloc(allocator, sizeof(t_textures));
 	if (!(*data)->textures)
 		return (clean_data(*data), 0);
+	*(*data)->textures = (t_textures){0};
 	if (!init_textures(*data))
 		return (clean_data(*data), 0);
 	(*data)->map = ft_my_malloc(allocator, sizeof(t_map));

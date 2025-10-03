@@ -1,3 +1,3 @@
 make
 
-valgrind --leak-check=full --suppressions=mlx.supp ./cub3D subject.cub
+valgrind --leak-check=full --suppressions=mlx.supp ./cub3D test.cub
