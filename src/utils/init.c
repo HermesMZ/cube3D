@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/03 13:25:08 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:05:56 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,27 @@ int	init_data(t_data **data, t_lalloc *allocator)
 
 int	load_texture(t_mlx_data *mlx, t_my_img *tex, char *path)
 {
+	int	fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (printf("Error: Fichier de texture introuvable %s\n", path), 0);
+	close(fd);
 	tex->img = mlx_xpm_file_to_image(mlx->mlx_ptr, path,
 			&tex->width, &tex->height);
 	if (!tex->img)
+	{
+		tex->addr = NULL;
 		return (0);
-	tex->addr = mlx_get_data_addr(tex->img,
-			&tex->bits_per_pixel,
-			&tex->line_len,
-			&tex->endian);
+	}
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bits_per_pixel,
+			&tex->line_len, &tex->endian);
+	if (!tex->addr)
+	{
+		mlx_destroy_image(mlx->mlx_ptr, tex->img);
+		tex->img = NULL;
+		return (0);
+	}
 	return (1);
 }
 

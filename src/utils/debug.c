@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:23:42 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 22:31:01 by zoum             ###   ########.fr       */
+/*   Updated: 2025/10/03 14:03:19 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,34 +18,34 @@ void	debug_print_map(t_map *map)
 
 	if (!map || !map->grid)
 	{
-		ft_printf("Map is NULL or grid is NULL\n");
+		printf("Map is NULL or grid is NULL\n");
 		return ;
 	}
-	ft_printf("Map dimensions: %d x %d\n", map->height, map->width);
-	ft_printf("Map Grid:\n");
+	printf("Map dimensions: %d x %d\n", map->height, map->width);
+	printf("Map Grid:\n");
 	i = 0;
 	while (i < map->height && map->grid[i])
 	{
-		ft_printf("Line %2d: [%s]\n", i, map->grid[i]);
+		printf("Line %2d: [%s]\n", i, map->grid[i]);
 		i++;
 	}
 	if (i == 0)
-		ft_printf("No map lines found!\n");
+		printf("No map lines found!\n");
 }
 
 void	debug_print_textures(t_textures *textures)
 {
 	if (!textures)
 		return ;
-	ft_printf("North Texture: %s\n", textures->north_texture);
-	ft_printf("South Texture: %s\n", textures->south_texture);
-	ft_printf("West Texture: %s\n", textures->west_texture);
-	ft_printf("East Texture: %s\n", textures->east_texture);
+	printf("North Texture: %s\n", textures->north_texture);
+	printf("South Texture: %s\n", textures->south_texture);
+	printf("West Texture: %s\n", textures->west_texture);
+	printf("East Texture: %s\n", textures->east_texture);
 	if (textures->floor_color)
-		ft_printf("Floor Color   : %d %d %d\n", textures->floor_color->r,
+		printf("Floor Color   : %d %d %d\n", textures->floor_color->r,
 			textures->floor_color->g, textures->floor_color->b);
 	if (textures->ceiling_color)
-		ft_printf("Ceiling Color : %d %d %d\n", textures->ceiling_color->r,
+		printf("Ceiling Color : %d %d %d\n", textures->ceiling_color->r,
 			textures->ceiling_color->g, textures->ceiling_color->b);
 }
 
@@ -53,9 +53,9 @@ void	debug_print_player(t_player *player)
 {
 	if (!player)
 		return ;
-	ft_printf("Player start_position: %d %d\n", player->start_position[0],
+	printf("Player start_position: %d %d\n", player->start_position[0],
 		player->start_position[1]);
-	ft_printf("Player Direction: %c\n", player->direction);
+	printf("Player Direction: %c\n", player->direction);
 }
 
 void	debug_print_data(t_data *data)

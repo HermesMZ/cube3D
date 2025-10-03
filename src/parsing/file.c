@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:12:41 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 19:01:47 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:03:19 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,14 @@ int	load_file(char *filename, t_data *data)
 	int		fd;
 
 	if (!filename || !data || !data->allocator)
-		return (ft_printf("Error: load_file - invalid parameters\n"), 0);
+		return (printf("Error: load_file - invalid parameters\n"), 0);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
-		return (ft_printf("Error: load_file - %s\n", filename), 0);
+		return (printf("Error: load_file - %s\n", filename), 0);
 	if (!process_config_lines(data, fd))
 	{
 		close(fd);
-		return (ft_printf("Error: load_file - processing failed\n"), 0);
+		return (printf("Error: load_file - processing failed\n"), 0);
 	}
 	close(fd);
 	return (1);

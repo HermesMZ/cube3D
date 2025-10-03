@@ -6,15 +6,16 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:11:07 by zoum              #+#    #+#             */
-/*   Updated: 2025/10/02 19:29:44 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:07:58 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+// printf("Key pressed: %d\n", keysym);
+
 int	key_press(int keysym, t_data *data)
 {
-	printf("Key pressed: %d\n", keysym);
 	if (keysym == XK_Escape)
 		end_display(data);
 	if (keysym == 32)

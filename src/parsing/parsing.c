@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:49:00 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 13:57:00 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:13:26 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_color	*extract_rgb(t_data *data, t_color *color, char *line)
 {
 	if (!line || !color)
 	{
-		ft_printf("extract_rgb: line or color is NULL\n");
+		printf("extract_rgb: line or color is NULL\n");
 		return (ft_my_free(data->allocator, color), NULL);
 	}
 	color->r = 0;
@@ -96,17 +96,17 @@ int	parse_textures(t_data *data)
 int	parse_file(char *filename, t_data **data)
 {
 	if (!load_file(filename, *data))
-		return (ft_printf("Error: Failed to load file\n"), 0);
+		return (printf("Error: Failed to load file\n"), 0);
 	if (!mandatory_ids_present((*data)->ids))
-		return (ft_printf("Error: Missing or duplicate mandatory id\n"), 0);
+		return (printf("Error: Missing or duplicate mandatory id\n"), 0);
 	if (!parse_textures(*data))
-		return (ft_printf("Error: Failed to parse textures\n"), 0);
+		return (printf("Error: Failed to parse textures\n"), 0);
 	if (!parse_map_from_file(data, filename))
-		return (ft_printf("Error: Failed to parse map\n"), 0);
+		return (printf("Error: Failed to parse map\n"), 0);
 	if (!map_check((*data)->map))
-		return (ft_printf("Error: Map is not valid or not closed\n"), 0);
+		return (printf("Error: Map is not valid or not closed\n"), 0);
 	if (init_player(*data) != 1)
-		return (ft_printf("Error: One and only one player start position\n"), 0);
+		return (printf("Error: One and only one player start position\n"), 0);
 	get_next_line(-1);
 	return (1);
 }

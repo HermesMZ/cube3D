@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 16:11:18 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/03 13:28:00 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/03 14:25:11 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,16 @@ static void	clean_map(t_data *data, t_map *map)
 	if (!map)
 		return ;
 	i = 0;
-	while (i < map->height)
+	if (map->grid)
 	{
-		ft_my_free(data->allocator, map->grid[i]);
-		i++;
+		while (i < map->height)
+		{
+			if (map->grid[i])
+				ft_my_free(data->allocator, map->grid[i]);
+			i++;
+		}
+		ft_my_free(data->allocator, map->grid);
 	}
-	ft_my_free(data->allocator, map->grid);
 	ft_my_free(data->allocator, map);
 }
 
