@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_alloc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 14:00:00 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 21:36:34 by zoum             ###   ########.fr       */
+/*   Updated: 2025/10/03 17:33:03 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,6 @@ void	ft_my_free_splitted(t_lalloc *allocator, char **splitted)
 		i++;
 	}
 	ft_my_free(allocator, splitted);
-}
-
-static int	count_words(char const *s, char c)
-{
-	int	count;
-	int	in_word;
-
-	count = 0;
-	in_word = 0;
-	while (*s)
-	{
-		if (*s != c && !in_word)
-		{
-			in_word = 1;
-			count++;
-		}
-		else if (*s == c)
-			in_word = 0;
-		s++;
-	}
-	return (count);
 }
 
 static char	*create_word(t_lalloc *allocator, char const *s, int start, int end)
@@ -100,7 +79,7 @@ static char	**fill_words(t_lalloc *allocator, char const *s, char c,
 		{
 			result[word_index] = create_word(allocator, s, start, i);
 			if (!result[word_index])
-				return (NULL);
+				return (ft_my_free_splitted(allocator, result), NULL);
 			word_index++;
 		}
 	}
@@ -110,10 +89,25 @@ static char	**fill_words(t_lalloc *allocator, char const *s, char c,
 
 char	**ft_split_alloc(t_lalloc *allocator, char const *s, char c)
 {
-	int	word_count;
+	int			count;
+	int			in_word;
+	char const	*original_s;
 
 	if (!s || !allocator)
 		return (NULL);
-	word_count = count_words(s, c);
-	return (fill_words(allocator, s, c, word_count));
+	original_s = s;
+	count = 0;
+	in_word = 0;
+	while (*s)
+	{
+		if (*s != c && !in_word)
+		{
+			in_word = 1;
+			count++;
+		}
+		else if (*s == c)
+			in_word = 0;
+		s++;
+	}
+	return (fill_words(allocator, original_s, c, count));
 }

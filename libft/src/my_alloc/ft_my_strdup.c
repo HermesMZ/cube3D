@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_my_strdup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 21:26:27 by zoum              #+#    #+#             */
-/*   Updated: 2025/09/17 21:28:29 by zoum             ###   ########.fr       */
+/*   Updated: 2025/10/03 17:18:14 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 
 char	*ft_my_strdup(t_lalloc *allocator, const char *s)
 {

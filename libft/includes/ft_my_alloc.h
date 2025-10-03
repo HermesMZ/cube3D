@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_my_alloc.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/05 12:36:49 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/17 21:36:27 by zoum             ###   ########.fr       */
+/*   Updated: 2025/10/03 17:18:30 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,5 @@ char		*ft_strjoin_alloc(t_lalloc *allocator, char const *s1,
 				char const *s2);
 t_lalloc	*ft_init_allocator(void);
 char		*ft_my_strdup(t_lalloc *allocator, const char *s);
-
 
 #endif /* FT_MY_ALLOC_H */
