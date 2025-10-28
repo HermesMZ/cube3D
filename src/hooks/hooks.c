@@ -6,14 +6,41 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:11:07 by zoum              #+#    #+#             */
-/*   Updated: 2025/10/28 17:24:28 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 18:52:03 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+static void	key_press_speed(t_data *data, int keysym)
+{
+	if (keysym == 61)
+	{
+		data->player->base_speed += 0.005;
+		if (data->keys.run)
+			data->player->movement_speed = data->player->base_speed * 3;
+		else
+			data->player->movement_speed = data->player->base_speed;
+		printf("Increased base speed to: %f (current: %f)\n",
+			data->player->base_speed, data->player->movement_speed);
+	}
+	if (keysym == 45)
+	{
+		data->player->base_speed -= 0.005;
+		if (data->player->base_speed < 0.005)
+			data->player->base_speed = 0.005;
+		if (data->keys.run)
+			data->player->movement_speed = data->player->base_speed * 3;
+		else
+			data->player->movement_speed = data->player->base_speed;
+		printf("Decreased base speed to: %f (current: %f)\n",
+			data->player->base_speed, data->player->movement_speed);
+	}
+}
+
 int	key_press(int keysym, t_data *data)
 {
+	printf("Key pressed: %d\n", keysym);
 	if (keysym == XK_Escape)
 		end_display(data);
 	if (keysym == 32)
@@ -36,6 +63,7 @@ int	key_press(int keysym, t_data *data)
 		data->keys.strafe_left = true;
 	if (keysym == 65505)
 		data->keys.run = true;
+	key_press_speed(data, keysym);
 	return (0);
 }
 
@@ -59,5 +87,3 @@ int	key_release(int keysym, t_data *data)
 		data->keys.run = false;
 	return (0);
 }
-
-
