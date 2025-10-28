@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   player_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 11:21:21 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/03 16:49:56 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 13:33:42 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	set_player_position_h(t_data *data)
 {
@@ -66,16 +66,17 @@ static void	set_player_attribute(t_data *data, int i, int j)
 	data->player->first_mouse = true;
 }
 
-int	init_player(t_data *data)
+int	init_player(t_data *data, int i, int j)
 {
-	int	i;
-	int	j;
 	int	player_count;
 
-	if (!data || !data->map || !data->map->grid || !data->player)
+	if (!data || !data->map || !data->map->grid)
 		return (0);
+	data->player = ft_my_malloc(data->allocator, sizeof(t_player));
+	if (!data->player)
+		return (0);
+	*data->player = (t_player){0};
 	player_count = 0;
-	i = -1;
 	while (++i < data->map->height)
 	{
 		j = -1;

@@ -11,6 +11,8 @@ KEYS_DIR = $(SRC_DIR)/keys
 PARSING_DIR = $(SRC_DIR)/parsing
 UTILS_DIR = $(SRC_DIR)/utils
 RAYCASTION_DIR = $(SRC_DIR)/raycasting
+MANDATORY_DIR = $(SRC_DIR)/mandatory
+BONUS_DIR = $(SRC_DIR)/bonus
 
 OBJ_DIR = obj
 
@@ -21,9 +23,6 @@ LIBMLX = $(LIBMLX_DIR)/libmlx_Linux.a
 
 INCLUDES_DIR = include
 INCLUDES = -I $(INCLUDES_DIR) -I $(LIBFT_DIR)/includes -I $(LIBMLX_DIR)
-
-SRC = \
-	main.c \
 
 HOOKS_SRC = \
 	hooks.c \
@@ -41,24 +40,43 @@ PARSING_SRC = \
 	map_utils.c \
 	map.c \
 	parsing.c \
-	player.c \
 
 UTILS_SRC = \
 	clean_mlx.c \
 	clean.c \
 	debug.c \
-	init.c \
 
 RAYCASTION_SRC = \
 	map_background.c \
-	render_2D.c \
-	raycasting.c \
 	draw_column.c \
 	init_ray.c \
 
+MANDATORY_SRC = \
+	init.c \
+	main.c \
+	player.c \
+	raycasting.c \
+
+BONUS_SRC = \
+	init_bonus.c \
+	main_bonus.c \
+	mouse_bonus.c \
+	raycasting_bonus.c \
+	render_2D_bonus.c \
+	player_bonus.c \
+
+
 
 SRC_ALL = \
-	$(addprefix $(SRC_DIR)/, $(SRC)) \
+	$(addprefix $(MANDATORY_DIR)/, $(MANDATORY_SRC)) \
+	$(addprefix $(HOOKS_DIR)/, $(HOOKS_SRC)) \
+	$(addprefix $(KEYS_DIR)/, $(KEYS_SRC)) \
+	$(addprefix $(PARSING_DIR)/, $(PARSING_SRC)) \
+	$(addprefix $(UTILS_DIR)/, $(UTILS_SRC)) \
+	$(addprefix $(RAYCASTION_DIR)/, $(RAYCASTION_SRC)) \
+	
+SRC_BONUS = \
+	$(addprefix $(BONUS_DIR)/, $(BONUS_SRC)) \
 	$(addprefix $(HOOKS_DIR)/, $(HOOKS_SRC)) \
 	$(addprefix $(KEYS_DIR)/, $(KEYS_SRC)) \
 	$(addprefix $(PARSING_DIR)/, $(PARSING_SRC)) \
@@ -66,11 +84,21 @@ SRC_ALL = \
 	$(addprefix $(RAYCASTION_DIR)/, $(RAYCASTION_SRC)) \
 
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o, $(SRC_ALL))
+OBJS_BONUS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o, $(SRC_BONUS))
 
 all: $(LIBFT) $(LIBMLX) $(NAME) $(INCLUDES_DIR)/cub3D.h
 
 $(NAME): $(OBJS) $(LIBFT) $(LIBMLX) $(INCLUDES_DIR)/cub3D.h
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(LIBMLX) $(MLX_LIBS) $(X_LIBS) -no-pie -o $(NAME)
+	@touch .mandatory
+	@rm -f .bonus
+
+bonus: .bonus
+
+.bonus: $(LIBFT) $(LIBMLX) $(OBJS_BONUS) $(INCLUDES_DIR)/cub3D_bonus.h
+	$(CC) $(CFLAGS) $(OBJS_BONUS) $(LIBFT) $(LIBMLX) $(MLX_LIBS) $(X_LIBS) -no-pie -o $(NAME)
+	@touch .bonus
+	@rm -f .mandatory
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(@D)
@@ -86,6 +114,7 @@ $(LIBMLX):
 
 clean:
 	@rm -rf $(OBJ_DIR)
+	@rm -f .bonus .mandatory
 	@$(MAKE) -C $(LIBFT_DIR) clean
 	@$(MAKE) -C $(LIBMLX_DIR) clean
 
@@ -95,4 +124,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

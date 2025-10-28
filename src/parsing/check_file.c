@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 16:01:07 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/03 14:27:10 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 12:30:56 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,7 @@ int	mandatory_ids_present(t_id *ids)
 	if (!mandatory_ids.north_texture || !mandatory_ids.south_texture
 		|| !mandatory_ids.west_texture || !mandatory_ids.east_texture
 		|| !mandatory_ids.floor_color || !mandatory_ids.ceiling_color)
-	{
-		printf("Error:Missing NO=%d SO=%d WE=%d EA=%d F=%d C=%d\n",
-			mandatory_ids.north_texture, mandatory_ids.south_texture,
-			mandatory_ids.west_texture, mandatory_ids.east_texture,
-			mandatory_ids.floor_color, mandatory_ids.ceiling_color);
-		printf("Error: Missing mandatory identifiers\n");
-		return (0);
-	}
+		return (printf("Error:Missing mandatory identifiers"), 0);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: zoum <zoum@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:49:00 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/04 13:35:38 by zoum             ###   ########.fr       */
+/*   Updated: 2025/10/28 13:32:31 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,16 @@ int	parse_textures(t_data *data)
 int	parse_file(char *filename, t_data **data)
 {
 	if (!load_file(filename, *data))
-		return (printf("Error: Failed to load file\n"), 0);
+		return (0);
 	if (!mandatory_ids_present((*data)->ids))
-		return (printf("Error: Missing or duplicate mandatory id\n"), 0);
+		return (0);
 	if (!parse_textures(*data))
 		return (printf("Error: Failed to parse textures\n"), 0);
 	if (!parse_map_from_file(data, filename))
 		return (printf("Error: Failed to parse map\n"), 0);
 	if (!map_check((*data)->map))
 		return (printf("Error: Map is not valid or not closed\n"), 0);
-	if (init_player(*data) != 1)
+	if (init_player(*data, -1, -1) != 1)
 		return (ft_printf("Error: One and only one player needed\n"), 0);
 	get_next_line(-1);
 	return (1);

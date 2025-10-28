@@ -6,13 +6,11 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:11:07 by zoum              #+#    #+#             */
-/*   Updated: 2025/10/03 16:48:21 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 13:35:44 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-// printf("Key pressed: %d\n", keysym);
 
 int	key_press(int keysym, t_data *data)
 {
@@ -28,13 +26,13 @@ int	key_press(int keysym, t_data *data)
 		data->keys.forward = true;
 	if (keysym == 115)
 		data->keys.backward = true;
-	if (keysym == 97)
+	if (keysym == 65361)
 		data->keys.left = true;
-	if (keysym == 100)
+	if (keysym == 65363)
 		data->keys.right = true;
-	if (keysym == 101)
+	if (keysym == 100)
 		data->keys.strafe_right = true;
-	if (keysym == 113)
+	if (keysym == 97)
 		data->keys.strafe_left = true;
 	if (keysym == 65505)
 		data->keys.run = true;
@@ -49,13 +47,13 @@ int	key_release(int keysym, t_data *data)
 		data->keys.forward = false;
 	if (keysym == 115)
 		data->keys.backward = false;
-	if (keysym == 97)
+	if (keysym == 65361)
 		data->keys.left = false;
-	if (keysym == 100)
+	if (keysym == 65363)
 		data->keys.right = false;
-	if (keysym == 101)
+	if (keysym == 100)
 		data->keys.strafe_right = false;
-	if (keysym == 113)
+	if (keysym == 97)
 		data->keys.strafe_left = false;
 	if (keysym == 65505)
 		data->keys.run = false;

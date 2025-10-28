@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
+/*   raycasting_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 14:55:24 by edobele           #+#    #+#             */
-/*   Updated: 2025/10/03 15:02:32 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 13:58:28 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 void	render_3d_scene(t_data *data)
 {
@@ -28,7 +28,7 @@ void	render_3d_scene(t_data *data)
 	}
 	mlx_put_image_to_window(data->mlx->mlx_ptr, data->mlx->win_ptr,
 		data->mlx->img->img, 0, 0);
-	render_map2d(data, 8);
+	render_map2d(data, W / 100);
 }
 
 void	perform_dda(t_ray *ray, t_data *data)

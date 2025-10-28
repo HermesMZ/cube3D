@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 15:44:50 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/03 16:49:56 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 13:54:08 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 int	init_mlx(t_data *data)
 {
@@ -73,10 +73,7 @@ int	init_data(t_data **data, t_lalloc *allocator)
 	if (!(*data)->map)
 		return (clean_data(*data), 0);
 	*(*data)->map = (t_map){0};
-	(*data)->player = ft_my_malloc(allocator, sizeof(t_player));
-	if (!(*data)->player)
-		return (clean_data(*data), 0);
-	*(*data)->player = (t_player){0};
+	(*data)->player = NULL;
 	if (!init_mlx(*data))
 		return (clean_data(*data), 0);
 	return (1);

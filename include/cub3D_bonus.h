@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                           :+:      :+:    :+:   */
+/*   cub3D_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 13:43:23 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/09/16 12:24:30 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 14:02:30 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "mlx.h"
 # include "libft.h"
@@ -102,6 +102,10 @@ typedef struct s_player
 	double		dir_y;
 	double		plane_x;
 	double		plane_y;
+	double		mouse_sensitivity;
+	int			last_mouse_x;
+	int			last_mouse_y;
+	bool		first_mouse;
 }				t_player;
 
 typedef struct s_map
@@ -169,6 +173,7 @@ void		turn_right(t_data *data);
 void		translate_left(t_data *data);
 void		translate_right(t_data *data);
 void		handle_run_key(t_data *data);
+int			mouse_move(int x, int y, void *param);
 
 // parsing
 int			check_input(t_data *data, char *filename);
@@ -199,6 +204,7 @@ void		debug_print_player(t_player *player);
 void		debug_print_data(t_data *data);
 
 // Raycasting
+void		render_map2d(t_data *data, int tile_size);
 int			update(t_data *data);
 void		render_background(t_data *data, int x, int y);
 int			create_rgb(int r, int g, int b);
