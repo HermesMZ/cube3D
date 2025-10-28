@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_2D.c                                        :+:      :+:    :+:   */
+/*   render_2D_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 12:36:01 by edobele           #+#    #+#             */
-/*   Updated: 2025/10/02 12:36:07 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 18:26:49 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub3D_bonus.h"
 
 static void	render_tile(t_data *data, int i, int j, int tile_size)
 {
@@ -76,7 +76,34 @@ void	render_map2d(t_data *data, int tile_size)
 		i++;
 	}
 	render_player(data, tile_size);
-	mlx_put_image_to_window(data->mlx->mlx_ptr,
-		data->mlx->win_ptr,
-		data->mlx->img->img, 0, 0);
 }
+
+// void	display_player_info(t_data *data)
+// {
+// 	char	*str;
+
+// 	str = ft_itoa((int)(data->player->x * 100));
+// 	mlx_string_put(data->mlx->mlx_ptr, data->mlx->win_ptr, 10, 200,
+// 		0xFFFFFF, "X:");
+// 	mlx_string_put(data->mlx->mlx_ptr, data->mlx->win_ptr, 50, 200,
+// 		0x00FF00, str);
+// 	free(str);
+// 	str = ft_itoa((int)(data->player->y * 100));
+// 	mlx_string_put(data->mlx->mlx_ptr, data->mlx->win_ptr, 10, 240,
+// 		0xFFFFFF, "Y:");
+// 	mlx_string_put(data->mlx->mlx_ptr, data->mlx->win_ptr, 50, 240,
+// 		0x00FF00, str);
+// 	free(str);
+// 	str = ft_itoa((int)(data->player->dir_x * 1000));
+// 	mlx_string_put(data->mlx->mlx_ptr, data->mlx->win_ptr, 10, 260,
+// 		0xFFFFFF, "DirX:");
+// 	mlx_string_put(data->mlx->mlx_ptr, data->mlx->win_ptr, 70, 260,
+// 		0x00FF00, str);
+// 	free(str);
+// 	str = ft_itoa((int)(data->player->dir_y * 1000));
+// 	mlx_string_put(data->mlx->mlx_ptr, data->mlx->win_ptr, 10, 280,
+// 		0xFFFFFF, "DirY:");
+// 	mlx_string_put(data->mlx->mlx_ptr, data->mlx->win_ptr, 70, 280,
+// 		0x00FF00, str);
+// 	free(str);
+// }

@@ -29,6 +29,7 @@ HOOKS_SRC = \
 
 KEYS_SRC = \
 	actions.c \
+	check_moves.c \
 	handlers.c \
 	moves.c \
 	strafe.c \

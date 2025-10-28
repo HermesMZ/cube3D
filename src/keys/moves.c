@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/17 22:43:36 by zoum              #+#    #+#             */
-/*   Updated: 2025/10/28 12:40:37 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 18:22:46 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,15 @@ void	move_forward(t_data *data)
 		* data->player->movement_speed;
 	new_y = data->player->y + data->player->dir_y
 		* data->player->movement_speed;
-	if (data->map->grid[(int)new_y][(int)new_x] != '1')
+	if (!check_collision(data, new_x, new_y))
 	{
 		data->player->x = new_x;
 		data->player->y = new_y;
 	}
+	else if (!check_collision(data, new_x, data->player->y))
+		data->player->x = new_x;
+	else if (!check_collision(data, data->player->x, new_y))
+		data->player->y = new_y;
 }
 
 void	move_backward(t_data *data)
@@ -37,11 +41,15 @@ void	move_backward(t_data *data)
 		* data->player->movement_speed;
 	new_y = data->player->y - data->player->dir_y
 		* data->player->movement_speed;
-	if (data->map->grid[(int)new_y][(int)new_x] != '1')
+	if (!check_collision(data, new_x, new_y))
 	{
 		data->player->x = new_x;
 		data->player->y = new_y;
 	}
+	else if (!check_collision(data, new_x, data->player->y))
+		data->player->x = new_x;
+	else if (!check_collision(data, data->player->x, new_y))
+		data->player->y = new_y;
 }
 
 void	turn_right(t_data *data)

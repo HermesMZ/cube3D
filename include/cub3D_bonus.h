@@ -6,7 +6,7 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 13:43:23 by mzimeris          #+#    #+#             */
-/*   Updated: 2025/10/28 14:02:30 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 18:21:31 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ int			key_press(int keysym, t_data *data);
 int			key_release(int keysym, t_data *data);
 
 // keys
+int			is_wall_at(t_data *data, double x, double y);
+int			check_collision(t_data *data, double new_x, double new_y);
 void		handle_move_keys(t_data *data);
 void		handle_open_key(t_data *data);
 void		handle_fire_key(t_data *data);
@@ -205,6 +207,7 @@ void		debug_print_data(t_data *data);
 
 // Raycasting
 void		render_map2d(t_data *data, int tile_size);
+void		display_player_info(t_data *data);
 int			update(t_data *data);
 void		render_background(t_data *data, int x, int y);
 int			create_rgb(int r, int g, int b);

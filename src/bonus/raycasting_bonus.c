@@ -6,11 +6,20 @@
 /*   By: mzimeris <mzimeris@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/03 14:55:24 by edobele           #+#    #+#             */
-/*   Updated: 2025/10/28 13:58:28 by mzimeris         ###   ########.fr       */
+/*   Updated: 2025/10/28 18:27:10 by mzimeris         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D_bonus.h"
+
+int	update(t_data *data)
+{
+	handle_move_keys(data);
+	render_3d_scene(data);
+	mlx_put_image_to_window(data->mlx->mlx_ptr,
+		data->mlx->win_ptr, data->mlx->img->img, 0, 0);
+	return (0);
+}
 
 void	render_3d_scene(t_data *data)
 {
@@ -47,7 +56,10 @@ void	perform_dda(t_ray *ray, t_data *data)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (data->map->grid[ray->map_y][ray->map_x] == '1')
+		if (ray->map_x < 0 || ray->map_x >= data->map->width
+			|| ray->map_y < 0 || ray->map_y >= data->map->height)
+			ray->hit = 1;
+		else if (data->map->grid[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}
 }

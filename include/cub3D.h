@@ -159,6 +159,8 @@ int			key_press(int keysym, t_data *data);
 int			key_release(int keysym, t_data *data);
 
 // keys
+int			is_wall_at(t_data *data, double x, double y);
+int			check_collision(t_data *data, double new_x, double new_y);
 void		handle_move_keys(t_data *data);
 void		handle_open_key(t_data *data);
 void		handle_fire_key(t_data *data);
